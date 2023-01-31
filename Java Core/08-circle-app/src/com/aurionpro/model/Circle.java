@@ -13,6 +13,12 @@ public class Circle {
 		this.border = border;
 	}
 	
+	public Circle() {
+		super();
+		this.radius = 5.0;
+		this.border = BorderType.Dashed;
+	}
+	
 	public double getRadius() {
 		return radius;
 	}
