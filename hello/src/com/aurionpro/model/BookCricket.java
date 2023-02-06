@@ -67,6 +67,7 @@ public class BookCricket {
 
 				}
 			}
+			
 			if (score2 > (score1 - 1)) {
 				System.out.println(player2 + " Wins the Match ");
 			} else if (score2 == (score1 - 1)) {
