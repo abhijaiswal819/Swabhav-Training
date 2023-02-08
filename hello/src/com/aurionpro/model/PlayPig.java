@@ -36,6 +36,13 @@ public class PlayPig {
 					
 					if (die == 1) {
 						System.out.println("Turn over. No score.");
+						System.out.println("Total score : " + points);
+					}
+					else if((turnscore+points)>=20) {
+						points = points + turnscore;
+						System.out.println("Score for turn : " + turnscore);
+						System.out.println("Total score : " + points);
+						break;
 					}
 				} else if (choice.equals("h")) {
 					points = points + turnscore;
