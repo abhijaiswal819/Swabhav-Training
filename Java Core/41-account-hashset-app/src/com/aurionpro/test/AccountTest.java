@@ -11,7 +11,7 @@ public class AccountTest {
 		Set<Account> list = new HashSet<Account>();
 
 		list.add(new Account(101, "RAM", 510));
-		list.add(new Account(101, "RAM", 510));
+		list.add(new Account(101, "SAM", 510));
 		list.add(new Account(102, "KAM", 850));
 		list.add(new Account(103, "JAM", 285.8));
 

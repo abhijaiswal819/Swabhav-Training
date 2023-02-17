@@ -50,15 +50,17 @@ public class Account implements Comparable<Account> {
 		//return (this.getName().compareTo(o.getName()));//Ascending order logic for String
 	}
 
+	
+	////////Comment for only comparision of account number-means same account number should not go
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + accountNumber;
-		long temp;
-		temp = Double.doubleToLongBits(balance);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+//		long temp;
+//		temp = Double.doubleToLongBits(balance);
+//		result = prime * result + (int) (temp ^ (temp >>> 32));
+//		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -73,13 +75,13 @@ public class Account implements Comparable<Account> {
 		Account other = (Account) obj;
 		if (accountNumber != other.accountNumber)
 			return false;
-		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
+//		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
+//			return false;
+//		if (name == null) {
+//			if (other.name != null)
+//				return false;
+//		} else if (!name.equals(other.name))
+//			return false;
 		return true;
 	}
 	
