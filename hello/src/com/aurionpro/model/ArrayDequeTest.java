@@ -26,6 +26,13 @@ public class ArrayDequeTest {
 		// addLast() method to insert the elements at the tail
 		deque.addLast(24);
 		deque.addLast(14);
+		
+		System.out.println(deque);
+
+		deque.remove(14);
+		deque.poll();
+		System.out.println(deque.pollFirst());
+		System.out.println(deque.pollLast());
 
 		System.out.println(deque);
 		System.out.println();

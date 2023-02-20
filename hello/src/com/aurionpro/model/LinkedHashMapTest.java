@@ -16,6 +16,8 @@ public class LinkedHashMapTest {
 		System.out.println(map);
 		System.out.println();
 
+		//map.put("RA", 10);
+		map.replace("RAM", 50);
 		for (Map.Entry<String, Integer> e : map.entrySet())
 			System.out.println(e.getKey() + " " + e.getValue());
 

@@ -17,8 +17,10 @@ public class TreeSetTest {
 
 		System.out.println(set);
 		System.out.println("\n" + set.contains("KAM"));
+		System.out.println();
 		System.out.println(set.first());
 		System.out.println(set.last());
+		System.out.println();
 		System.out.println(set.pollFirst());
 		System.out.println(set.pollLast());
 

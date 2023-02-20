@@ -15,6 +15,7 @@ public class LinkedHashSetTest {
 
 		System.out.println(set);
 
+		//set.
 		System.out.println("\nSize is: " + set.size());
 		System.out.println("\nIs set Empty: " + set.isEmpty());
 
