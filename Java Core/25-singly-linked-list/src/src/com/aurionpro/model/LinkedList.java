@@ -1,5 +1,7 @@
 package src.com.aurionpro.model;
 
+import java.util.Iterator;
+
 public class LinkedList {
 
 	private class Node {
@@ -130,6 +132,34 @@ public class LinkedList {
 			i++;
 		}
 		System.out.println("Data "+value+" is found at "+(i+1));
+	}
+	
+	public Iterator<Integer> iterator() {
+		return new Iterator<Integer>() {
+			Node current = head;
+
+			@Override
+			public boolean hasNext() {
+				return current != null;
+			}
+
+			@Override
+			public Integer next() {
+				if (hasNext()) {
+					Integer data = (Integer) current.value;
+					current = current.next;
+					return data;
+				}
+				return null;
+			}
+
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException("Remove not implemented.");
+			}
+
+		};
+
 	}
 
 

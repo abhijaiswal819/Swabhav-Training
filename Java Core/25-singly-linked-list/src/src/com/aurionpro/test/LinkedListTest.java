@@ -1,5 +1,7 @@
 package src.com.aurionpro.test;
 
+import java.util.Iterator;
+
 import src.com.aurionpro.model.LinkedList;
 
 public class LinkedListTest {
@@ -29,9 +31,13 @@ public class LinkedListTest {
 		System.out.println("\nDeleting item at 2nd position : " + link.delete(2));
 		System.out.println("Displaying Linked List");
 		link.display();
-		
+
 		System.out.println();
 		link.search(60);
+
+		System.out.println("\nIterate through LinkedList");
+		Iterator<Integer> it=link.iterator();
+		it.forEachRemaining(System.out::println);
 	}
 
 }
