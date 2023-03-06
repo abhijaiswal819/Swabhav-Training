@@ -10,7 +10,7 @@ public class ThreadModel extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Task -> " + i);
+			System.out.println("Task -> " + this.getName());
 
 		}
 		System.out.println();

@@ -17,11 +17,14 @@ public class ThreadTest {
 
 		// Static reference
 		Runnable r2 = ThreadTest::execute;
-		r2.run();
+		Thread t2 = new Thread(r2);
+		t2.start();
+		//r2.run();
 
 		// lambda function
 		Runnable r3 = () -> System.out.println("Lamda Thread created.");
-		r3.run();
+		Thread t1 = new Thread(r3);
+		t1.start();
 	}
 
 	private static void execute() {

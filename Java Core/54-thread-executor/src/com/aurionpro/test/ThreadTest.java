@@ -11,10 +11,12 @@ public class ThreadTest {
 		int count = Runtime.getRuntime().availableProcessors();
 		System.out.println("Number of Processers: " + count);
 
-		ExecutorService service = Executors.newSingleThreadExecutor();
-		//ExecutorService service = Executors.newFixedThreadPool(3);
+		//ExecutorService service = Executors.newSingleThreadExecutor();
+		ExecutorService service = Executors.newFixedThreadPool(5);
 		//ExecutorService service = Executors.newCachedThreadPool();
 
+		service.execute(new ThreadModel());
+		service.execute(new ThreadModel());
 		service.execute(new ThreadModel());
 		service.execute(new ThreadModel());
 		service.execute(new ThreadModel());
