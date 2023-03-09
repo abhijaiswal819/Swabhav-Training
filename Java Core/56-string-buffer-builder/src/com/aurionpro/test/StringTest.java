@@ -18,6 +18,7 @@ public class StringTest {
 
 	public static void StrConcat(String str1) {
 		str1 = str1 + "Everyone.";
+		//System.out.println(str1);
 		//In this method, we pass a string “Hello! ” and perform “str1 = str1 + "Everyone.". The string passed from main() is not changed, 
 		//this is due to the fact that String is immutable. Altering the value of string creates another object and str1 in StrConcat() 
 		//stores reference of the new string. References str1 in main() and StrConcat() refer to different strings.
