@@ -1,0 +1,523 @@
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Comments//
+/* Single line comment */
+/* This is a multiline
+           comment */
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//List of Colors// 
+Color Name	Hex(RGB)	Decimal(RGB)		
+Red			FF0000		255, 0, 0	
+Pink		FFC0CB		255, 192, 203	
+Orange		FFA500		255, 165, 0	
+Yellow		FFFF00		255, 255, 0	
+Violet		EE82EE		238, 130, 238	
+Green		008000		0, 128, 0	
+Aqua		00FFFF		0, 255, 255	
+Blue		0000FF		0, 0, 255	
+Brown		A52A2A		165, 42, 42	
+White		FFFFFF		255, 255, 255	
+Gray		808080		128, 128, 128	
+Black		000000		0, 0, 0	
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CSS Properties:
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Align//
+margin: auto;											align a block element into the center
+position: absolute|static|relative|fixed|sticky;
+text-align: center;
+padding: 70px 0;										Vertically align-items we can use padding
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Anchor-Links//
+There are four state of links given below: 
+-a:link => This is a normal, unvisited link.
+-a:visited => This is a link visited by user at least once
+-a:hover => This is a link when mouse hovers over it
+-a:active => This is a link which is just clicked.
+
+Default value of links: 
+-By default the links created are underlined.
+-When mouse is hovered above a link, it changes to a hand icon.
+-Normal/unvisited links are blue.
+-Visited links a colored purple.
+-Active links are colored red.
+-When a link is focused, it has an outline around it.
+
+border-color: green;
+border-color: rgb(221, 177, 136);						(RED: 0-255, GREEN: 0-255, BLUE: 0-255)
+border-color: #009900;									(0-F)(0-F)(0-F)(0-F)(0-F)(0-F)
+
+a {									Initial link font family arial and Removing underline using text-decoration
+    font-family:Arial;
+	text-decoration: none|underline;
+	background-color: green;
+    color:white;
+    padding:5px 5px;
+    border-radius:5px;
+    text-align: center;
+    display: inline-block;
+}
+
+a:link{								Unvisited link will appear green with font family
+    color:red;
+	font-family:Arial;
+	background-color: powderblue;
+    padding:5px 5px;
+}
+        
+a:visited{							Visited link will appear blue with font family
+    color:blue;
+	font-family:Arial;
+}
+         
+a:hover{							When mouse hovers over link it will appear orange and change to times new roman
+    color:orange;
+	font-family:Times new roman;
+	background-color: green;
+    padding:5px 5px;
+}
+         
+a:active{							When the link is clicked, it will appear black and will changed to Comic sans ms
+    color:black;
+	font-family:Comic Sans MS;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Background//
+background: green;		
+background-color: lightgray;
+background-color: rgb(221, 177, 136);					(RED: 0-255, GREEN: 0-255, BLUE: 0-255)
+background-color: #009900;								(0-F)(0-F)(0-F)(0-F)(0-F)(0-F)
+background-image: url("https://www.../250.png");
+background-repeat: repeat-x;							To repeat an image horizontally
+background-repeat:no repeat;
+background-attachment: fixed;							The image will not scroll with the page
+background-position: center|left top;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Borders//
+border: 1px solid black;
+border-style: solid|dotted|dashed|double|groove|ridge|inset|outset|none|hidden;		Top Left Right Bottom
+border-style: solid dashed dotted double;											Top Left Right Bottom
+border-style: solid dashed dotted;													Top Left&Right Bottom
+border-style: solid dashed;															Top&Bottom Left&Right
+border-width: 8px|pt|cm|thin|medium|thick;
+border-color: green;
+border-color: rgb(221, 177, 136);													(RED: 0-255, GREEN: 0-255, BLUE: 0-255)
+border-color: #009900;																(0-F)(0-F)(0-F)(0-F)(0-F)(0-F)
+border-radius: 20px;
+border-top-style : dotted;
+border-bottom-width: thick;
+border-right-color: green;
+border-bottom: 1px dotted darkgreen;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Colors//
+color: green;
+color: rgb(0, 153, 0);					(RED: 0-255, GREEN: 0-255, BLUE: 0-255)
+color: rgba(0, 153, 0, 0.5);			(RED: 0-255, GREEN: 0-255, BLUE: 0-255, APLHA(Transparency): 0.0-1.0)
+color: #009900;							(0-F)(0-F)(0-F)(0-F)(0-F)(0-F)
+color: hsl(120, 100%, 30%);				(HUE: 0-360, SATURATION: 0%-100%, LIGHTNESS: 0%-100%)
+color: hsla(120, 100%, 50%, 0.50);		(HUE: 0-360, SATURATION: 0%-100%, LIGHTNESS: 0%-100%, APLHA(Transparency): 0.0-1.0)
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Combinators//
+1) General Sibling selector (~) - The general sibling selector is used to select the element that follows the first selector element and 
+also share the same parent as the first selector element. This can be used to select a group of elements that share the same parent element.
+div ~ p{
+    color: #009900;
+    font-size:32px;
+}
+div {
+    text-align:center;
+}
+		
+2) Adjacent Sibling selector (+) - The Adjacent sibling selector is used to select the element that is adjacent or the element 
+that is the next to the specified selector tag. This combinator selects only one tag that is just next to the specified tag.
+div + p{
+    color: #009900;
+    font-size:32px;
+}
+div {
+    text-align:center;
+}
+p {
+    text-align:center;
+}
+
+3) Child selector (>) - This selector is used to select the element that is the immediate child of the specified tag. 
+This combinator is stricter than the descendant selector because it selects only the second selector if it has the first selector element as its parent.
+div > p{
+    color: #009900;
+    font-size:32px;
+}
+div {
+    text-align:center;
+}
+p {
+    text-align:center;
+}
+		
+4) Descendant selector (space) - This selector is used to select all the child elements of the specified tag. 
+The tags can be the direct child of the specified tag or can be very deep in the specified tag. 
+This combinator combines the two selectors such that selected elements have an ancestor same as the first selector element.
+div > p{
+    color: #009900;
+    font-size:32px;
+}
+div {
+    text-align:center;
+}
+p {
+    text-align:center;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Counters//
+Counters in CSS are basically variables which can be used for numbering and values of CSS counters may be incremented by CSS rules
+
+CSS counters properties: 
+1) counter-reset: It is used to reset a counter by default initialized to a value 0(zero).
+2) counter-increment: It basically increments a counter value.
+3) content: It is used to generate content.
+4) counter() or counters() function: The value of a counter can be displayed using either the counter() or counters() function in a content property. 
+									 These two functions basically used to add the value of a counter to the element.
+								
+body {
+    counter-reset: myCounter;
+}
+h4::before {
+	counter-increment: myCounter;
+    content: "Heading " counter(myCounter) ": ";
+}
+
+/* Nested CSS counters */
+body {
+    counter-reset: counter1;
+}
+h3 {
+    counter-reset: counter2;
+}
+h3::before {
+    counter-increment: counter1;
+    content: counter(counter1) ". ";
+}
+h4::before {
+    margin-left:40px;
+    counter-increment: counter2;
+    content: counter(counter1) "." counter(counter2) " ";
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//DropDowns//
+a {
+    color: white;
+    background-color:#990;
+    text-decoration: none;
+}
+nav{										Nav is the outermost container
+    background: #333;
+}
+nav >ul{ margin: 0 auto; width: 80px; }		Use ‘>’ after hover to see the effect of hover on the immediate next ul of the li
+nav ul li{
+    display: block;
+    float: left;
+    margin-left:-40px;
+    position: relative;						Use relative position so that li moves or changes its position relative to its component
+}
+nav ul a{
+    display: block;
+    float: left;
+    width: 150px;
+    padding: 10px 20px;
+}
+nav ul a:hover{
+    background: #090;
+}
+nav ul li ul li{							Float is set to none so that it remains intact when we hover over it
+    float: none;
+}
+nav ul li ul{
+    display: none;
+    position: absolute;
+    background: #333;
+    top: 42px;
+}
+nav ul li:hover>ul{
+    display: block;
+}
+nav ul li a{
+    display: block;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Float//
+-none: This is the default value & the element does not float.
+-left: Element floats on the left side of the container.
+-right: Element floats on the right side of the container.
+-initial Element will be set to its default value.
+-inherit: Element inherits floating property of its parent property.
+
+float: none|left|right|initial|inherit;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Fonts//
+font-family: sans-serif|Arial|Helvetica|Comic Sans MS|cursive|Times New Roman;
+font-style: bold|normal|italic|oblique;
+font-size: 16px|percent|em|small|large;
+font-weight: bold|normal|lighter|bolder;
+font-variant: small-caps|normal;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Height//
+height: 200px|cm|percent;
+max-height: 100px;						Maximum height of the box
+min-height: 50px;						Minimum height of the box
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Icons//
+//Font Awesome Icons//
+<link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<i class="fa fa-cloud" style="font-size:32px;color:red;"></i> 			fa fa-heart|file|car|bars
+
+//Google Icons//
+<link rel="stylesheet" href= "https://fonts.googleapis.com/icon?family=Material+Icons">
+<i class="material-icons" style="font-size:30px;>cloud</i>				favorite|attachment|computer|traffic
+
+//Bootstrap Icons//
+<link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<i class="glyphicon glyphicon-cloud" style="font-size:28px;"></i>		glyphicon glyphicon-user|thumbs-up|remove|envelope
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Image Gallery//
+body {									Style to set body of page
+    width:100%; 
+    margin:auto;
+}
+.gallery {
+    width:100%;
+    display:flex;
+    flex-flow: row wrap;
+}
+.box {
+    flex-basis:20%;
+    width:100%;
+    padding:10px;
+    margin:8px;
+    box-shadow: 1px 1px 1px 1px green;
+}
+.text {
+    text-align:center;
+    margin-top:5px;
+    }
+.image:hover {
+border: 3px solid green;
+}
+          
+/* media query used here */
+@media only screen and (max-width: 300px) { 
+	.box {
+		flex-basis: 100%;
+	}
+}
+          
+@media only screen and (max-width:500px) {
+    .box {
+        flex-basis: 40%;
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Lists//
+-Unordered List: In unordered lists, the list items are marked with bullets i.e small black circles by default.
+-Ordered List: In ordered lists, the list items are marked with numbers and an alphabet.
+
+Value:
+-circle
+-decimal , eg :1,2,3,etc
+-decimal-leading-zeroes , eg :01,02,03,04,etc
+-lower-roman
+-upper-roman
+-lower-alpha, eg : a,b,c,etc
+-upper-alpha, eg : A,B,C,etc
+-square
+
+list-style-type: square;
+list-style-image: url("https://contribute.geeksforgeeks.org/wp-content/uploads/listitem-1.png");
+list-style-position: outside|inside;
+list-style: square inside;
+	
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Margins/
+Margin properties can have the following values:
+-Length in cm, px, pt, etc.
+-Width % of the element.
+-Margin calculated by the browser: auto.
+
+margin: 80px 100px 50px 80px;						Top Right Bottom Left 
+margin: 80px 50px 100px;							Top Right&Left Bottom
+margin: 100px 150px;								Top&Bottom Left&Right
+margin: 100px;										Top Right Bottom Left
+margin-left: 50px;
+margin-top: 50px;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Opacity-Transparency//
+opacity: 0.5;										Range 0.0 to 1.0 for Image opacity
+
+.hightolow {										Image Hover Opacity
+    opacity: 1.0;
+}
+.hightolow:hover {									Image Hover Opacity
+    opacity: 0.5;
+}
+
+background: rgba(0, 153, 0, 0.1);					Transparency range 0.0 to 1.0
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Outline//
+outline-style: auto|none|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit;
+outline-color: <color> | invert | inherit;
+outline-color: green;
+outline-color: rgb(221, 177, 136);									(RED: 0-255, GREEN: 0-255, BLUE: 0-255)
+outline-color: #009900;												(0-F)(0-F)(0-F)(0-F)(0-F)(0-F)
+outline-width: medium|thin|thick|length|initial|inherit;
+outline-width: 3px|cm|pt;
+outline-offset: length|initial|inherit;
+outline-offset: 3px;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Overflow//
+overflow:visible;									Content is not clipped and visible outside the element box
+overflow:hidden;									Overflow is clipped and the rest of the content is invisible
+overflow:scroll;									Overflow is clipped but a scrollbar is added to see the rest of the content & can be horizontal or vertical
+overflow:auto;										Automatically adds a scrollbar whenever it is required 
+overflow-x:scroll;									x deals with horizontal edges
+overflow-y:hidden;									y deals with vertical edges
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Padding//
+Padding properties can have the following values: 
+-Length in cm, px, pt, etc.
+-Width % of the element.
+
+padding: 80px 100px 50px 80px;						Top Right Bottom Left
+padding: 80px 50px 100px;							Top Right&Left Bottom
+padding: 100px 150px;								Top&Bottom Left&Right
+padding: 10px;										Top Right Bottom Left
+padding-left: 50px;
+padding-top: 50px;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Pseudo-classes//
+.box:hover{
+    background-color: orange;				When your mouse enters the box area, its background color changes to orange
+}
+
+.box:active{
+    background-color: orange;				When you click on the box, its background color changes for a moment
+}
+
+input:focus{
+    background-color: grey;					Background color of the input field which is currently focused changes
+}
+
+a:visited{
+    color: red;								The color of the link changes once it is visited
+}
+
+h1:not(.special) {
+    color: green;							Select all h1 elements that do not have the class "special". The color of these h1 elements will be set to green.
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Pseudo Elements//
+p::first-line{								Applies styles to the first line of a block-level element
+    color:Red;
+}
+
+p::first-letter{							Applies styles to the first letter of the first line of a block-level element
+    color:Red;
+}
+
+p::before{									Creates a pseudo-element that is the first child of the selected element
+    content: '"';
+    color: red;
+}
+
+p::after{									Creates a pseudo-element that is the last child of the selected element
+    content: '"';
+    color: red;
+}
+
+ul li::marker{								Selects the marker box of a list item, which typically contains a bullet or number
+    color: red;
+    font-size: 30px;
+}
+
+p::selection{								Styles the part of a document that has been highlighted by the user such as clicking/dragging the mouse across the text
+    color: red;
+    background-color: green;
+}
+		
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Styling Forms//
+background-color:green;						Adding Color Background
+color: black;								Adding Color to text
+width:10%;
+padding: 12px;
+margin: 8px;
+border: none;
+border: 2px solid red;
+border-radius: 4px;
+border-top: 3px solid blue;
+border-bottom: 3px solid red;
+
+background-image: url('search.png');		Adding images in the Input form
+background-position: 10px 10px; 
+background-repeat: no-repeat;
+padding: 12px 20px 12px 40px;
+
+-webkit-transition: width 1s ease-in-out;	Transition Property- relaxed input field width is 15% which when focused changes to 30% in 1 second
+transition: width 1s ease-in-out;
+
+input[type=text]:focus {					When we click on the input field it gets an outline of green color
+        border: 3px solid red;
+        background-color: green;
+        }
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Tables//
+border: 1.5px solid blue;							Styling the border
+width: 80px;
+border-collapse: collapse|separate;
+border-spacing: 10px;
+border-spacing: 10px 30px;
+caption-side: top|bottom;
+empty-cells: hide|show;								Hiding|Displaying empty cells border
+table-layout: auto|fixed;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Text Formatting//
+text-align: center|left|right;
+text-decoration: underline|overline|line-through|none;
+text-transform: lowercase|lowercase|capitalise;
+text-indent: 80px|cm|pt;
+letter-spacing: 4px;
+line-height: 40px;
+direction: rtl;										rtl means Right To Left
+text-shadow: 3px 1px blue;							Horizontal-size Vertical-size Color-name
+word-spacing: 15px;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Width//
+width: 600px;
+max-width: 500px;									Maximum width of the box
+min-width: 400px;									Minimum width of the box
+
+--------------------------------------------------------------------------------------------------------------------------------------------
