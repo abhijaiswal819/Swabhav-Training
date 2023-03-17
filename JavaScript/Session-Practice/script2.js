@@ -5,6 +5,7 @@
 // console.log(div);
 
 //to find h1
+/*
 const h1=document.querySelector("h1");
 console.log(h1);
 
@@ -111,3 +112,57 @@ const h1Ref=document.querySelector("h1");
 h1Ref.classList.add("test1");
 console.log(h1Ref);
 h1Ref.classList.remove("test1");
+*/
+
+//adding class success if p tag contains success word
+//adding class error if p tag contains error word
+const pAdd = document.querySelectorAll("p");
+pAdd.forEach(tag=>{
+    //instead of match we can use .includes
+    if (tag.innerText.match("success")){
+        tag.classList.add("success");
+    }
+    if (tag.innerText.match("error")){
+        tag.classList.add("error");
+    }
+})
+
+//if div contains error class the remove it or vice-versa to add
+const div=document.querySelector("div.error");
+div.classList.toggle("error");
+div.classList.toggle("error");
+div.classList.toggle("error");
+
+//accessing child p tags from parent div
+const intiDiv = document.querySelector("div");
+//Method-1
+Array.from(intiDiv.children).forEach(tag=>{
+    // if(tag==document.querySelector("p")){
+    //     tag.innerText+="para";
+    // }
+
+    // console.log(tag.tagName);
+
+    //Best method
+    if(tag.tagName=="P"){
+        tag.innerText+=" para"
+    }
+})
+// console.log(intiDiv.children);
+//Method-2
+intiDiv.childNodes.forEach(child=>{
+    if(child.nodeName=='P'){
+        child.innerText+=" hello";
+    }
+})
+
+//accessing parent div from child h2
+const h2E = document.querySelector("h2");
+console.log(h2E.parentElement);
+console.log(h2E.parentNode);
+
+//accessing sibling p, h1 from sibling h2
+const h2El = document.querySelector("h2");
+console.log(h2El.previousElementSibling);
+console.log(h2El.nextElementSibling);
+console.log(h2El.nextElementSibling.nextElementSibling);

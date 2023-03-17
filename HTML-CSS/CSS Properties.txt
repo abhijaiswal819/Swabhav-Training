@@ -1,4 +1,3 @@
-
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Comments//
 /* Single line comment */
@@ -21,6 +20,29 @@ White		FFFFFF		255, 255, 255
 Gray		808080		128, 128, 128	
 Black		000000		0, 0, 0	
 
+--------------------------------------------------------------------------------------------------------------------------------------------
+//Units//
+1) Absolute Length: It is not good for use on-screen, cause screen size varies so much depending on the device used for that page. 
+					It is recommended to use for print layout and where the output medium is known.
+	cm: centimeter
+	mm: millimeter
+	in: inches (1in = 96px = 2.54cm) 
+	px: pixels (1px = 1/96th of 1in) 
+	pt: points (1pt = 1/72 of 1in) 
+	pc: picas (1pc = 12 pt) 
+	
+2) Relative Length: It is good for use on-screen, if screen size varies so much depending on the device then these relative length units are perfect.
+					Because it changes with the different rendering mediums.
+	em: Relative to the font size of that element (2em means 2 times the size of the current font)
+	ex: Relative to the X(axis)-height of the current font.
+	ch: Relative to the width of the 0.
+	rem: Relative to the browser base font-size.
+	vw: Relative to 1% of the width of the viewport.
+	vh: Relative to 1% of the height of the viewport.
+	vmin: Relative to 1% of the viewport’s smaller dimension.
+	vmax: Relative to 1% of the viewport’s larger dimension.
+	%: % unit sets the font-size relative to the current font-size.
+	
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CSS Properties:
