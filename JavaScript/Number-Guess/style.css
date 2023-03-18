@@ -1,0 +1,42 @@
+body {
+    background-color: #edf6f9;
+    margin: 40px;
+}
+
+button {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: #00b4d8;
+    color: black;
+}
+
+.yellow {
+    background-color: #ffff3f;
+}
+
+.red {
+    background-color: #c1121f;
+}
+
+.green {
+    background-color: #70e000;
+}
+
+p{
+    font-size: 35px;
+    margin: 20px;
+    text-align: center;
+}
+
+pre {
+    font-size: 15px;
+    margin: 20px;
+    text-align: center;
+}
+
+div {
+    margin: auto;
+    text-align: center;
+}
