@@ -9,7 +9,7 @@ const startF = async (input1) => {
 };
 
 const addBtn = document.querySelector("button");
-const input1 = document.querySelector("#one").value;
+// const input1 = document.querySelector("#one").value;
 
 addBtn.addEventListener("click", () => {
     const input1 = document.querySelector("#one").value;
@@ -17,7 +17,7 @@ addBtn.addEventListener("click", () => {
         // console.log(input1);
         startF(input1).then((data) => {
             console.log(data);
-            funcToAdd(data);
+            funcToAdd(data,input1);
         })
         .catch(err => {
             console.log("Could not fetch data " + err);
@@ -28,8 +28,8 @@ addBtn.addEventListener("click", () => {
     }
 });
 
-function funcToAdd(data) {
-    const input2 = document.querySelector("#two");
+function funcToAdd(data,input1) {
+    //const input2 = document.querySelector("#two");
     document.querySelector("#two").value = data;
 
     const date = new Date();
@@ -37,14 +37,18 @@ function funcToAdd(data) {
     var current_time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     var date_time = current_date + " " + current_time;
 
-    localStorageAdd(data, date_time);
+    localStorageAdd(data, date_time,input1);
 }
 
-function localStorageAdd(data, date) {
+function localStorageAdd(data, date, input1) {
+    console.log(input1);
     if (localStorage.getItem(input1) != null) {
         const valData = JSON.parse(localStorage.getItem(input1));
-        document.querySelector("#three").value = valData[0].date;
-        document.querySelector("#four").value = valData[0].msg;
+        document.querySelector("#three").value = valData.date;
+        document.querySelector("#four").value = valData.msg;
+
+        // console.log(localStorage.key(valData));
+        // localStorage.removeItem(121)
     }
     else {
         document.querySelector("#three").value = "None";
@@ -56,11 +60,9 @@ function localStorageAdd(data, date) {
     // document.querySelector("#three").value = valData[0].date;
     // document.querySelector("#four").value = valData[0].msg;
 
-    const val = [
-        {
+    const val = {
             date: date,
             msg: data
-        }
-    ];
+        };
     localStorage.setItem(input1, JSON.stringify(val));
 }
