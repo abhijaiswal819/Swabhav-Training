@@ -55,12 +55,12 @@ function loadtable() {
     bill.innerHTML = html;
     html = `
     <tr>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Total </th>
-                            <th scope="col">Remove</th>
-                        </tr>`
+        <th scope="col">Product Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Total </th>
+        <th scope="col">Remove</th>
+    </tr>`
     bill.innerHTML += html;
 
     pushArr = JSON.parse(localStorage.getItem("DATA"));
