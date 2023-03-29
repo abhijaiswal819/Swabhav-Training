@@ -29,10 +29,11 @@
 		<tr>
 			<td>${stud.name}</td>
 			<td>${stud.rollno}</td>
-			<c:if test="${stud.scholarship == true }">
+			<c:set var="student" value="${stud.scholarship}"/>
+			<c:if test="${student == true }">
 				<td>YES</td>
 			</c:if>
-			<c:if test="${stud.scholarship == false }">
+			<c:if test="${student == false }">
 				<td>NO</td>
 			</c:if>
 <%-- 			<td>${stud.scholarship}</td>
