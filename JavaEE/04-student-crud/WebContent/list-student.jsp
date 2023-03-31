@@ -17,14 +17,25 @@
 		</tr>
 
 		<c:forEach var="student" items="${students}">
+			<c:url var="updateLink" value="StudentController">
+				<c:param name="command" value="LOAD"/>
+				<c:param name="studentId" value="${student.id}" />
+			</c:url>
+			
 			<tr>
 				<td>${student.id}</td>
 				<td>${student.firstName}</td>
 				<td>${student.lastName}</td>
 				<td>${student.email}</td>
+				<td><button onclick="window.location.href='${updateLink}'">Update</button></td>
+
 			</tr>
 		</c:forEach>
 	</table>
+	<br>
+	<br> Add new Student
+	<button onclick="window.location.href='add-student.jsp'">Add
+		Student</button>
 
 </body>
 </html>

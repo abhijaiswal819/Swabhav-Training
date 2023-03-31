@@ -19,38 +19,116 @@ import com.aurionpro.model.StudentDbUtil;
 public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StudentDbUtil studentDbUtil;
-       
-    public StudentController() {
-        super();
-    }
-    
-    @Resource(name="jdbc/studentdb")
-    private DataSource datasource;
-    
-    @Override
-    public void init() throws ServletException{
-    	super.init();
-    	studentDbUtil = new StudentDbUtil(datasource);
-    }
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			listStudents(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
+	public StudentController() {
+		super();
+	}
+
+	@Resource(name = "jdbc/studentdb")
+	private DataSource datasource;
+
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		studentDbUtil = new StudentDbUtil(datasource);
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+//		System.out.println(request.getParameter("command"));
+		String command = request.getParameter("command");
+		if (command == null) {
+			command = "LIST";
 		}
+		try {
+			switch (command) {
+			case "LIST":
+				listStudents(request, response);
+				break;
+			case "ADD":
+				addStudent(request, response);
+				loadStudent(request, response);
+				break;
+			case "LOAD":
+				loadStudent(request, response);
+				break;
+			case "UPDATE":
+				updateStudent(request, response);
+				break;
+			}
+		
+//			listStudents(request, response);
+		}catch(
+
+	Exception e)
+	{
+		e.printStackTrace();
+	}
+	}
+
+	private void updateStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int id = Integer.parseInt(request.getParameter("student_id"));
+		String firstName = request.getParameter("first_name");
+		String lastName = request.getParameter("last_name");
+		String email = request.getParameter("email");
+		Student tempStudent = new Student(id, firstName, lastName, email);
+//		System.out.println(tempStudent);
+		studentDbUtil.updateStudent(tempStudent);
+		response.sendRedirect(request.getContextPath() + "/StudentController");
+	}
+
+	private void loadStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int id = Integer.parseInt(request.getParameter("studentId"));
+		Student student = studentDbUtil.getStudentById(id);
+		request.setAttribute("theStudent", student);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("update-student.jsp");
+		dispatcher.forward(request, response);	}
+
+	private void addStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String firstName = request.getParameter("first_name");
+		String lastName = request.getParameter("last_name");
+		String email = request.getParameter("email");
+		Student tempStudent = new Student(firstName, lastName, email);
+//		studentDbUtil.addStudent(tempStudent);
+//		response.sendRedirect(request.getContextPath()+"/StudentController");
+
+		List<Student> students = studentDbUtil.getAllStudents();
+		boolean isStudentPresent = false;
+//		
+		for (Student x : students) {
+			if (x.getFirstName().equals(tempStudent.getFirstName()) && x.getLastName().equals(tempStudent.getLastName())
+					&& x.getEmail().equals(tempStudent.getEmail())) {
+				isStudentPresent = true;
+			}
+		}
+		for (int i = 0; i < students.size(); i++) {
+			if (students.get(i).getFirstName().equals(tempStudent.getFirstName())) {
+				if (students.get(i).getLastName().equals(tempStudent.getLastName())) {
+					if (students.get(i).getEmail().equals(tempStudent.getEmail())) {
+						isStudentPresent = true;
+					}
+				}
+			}
+		}
+
+//		System.out.println(tempStudent);
+		if (!isStudentPresent) {
+			studentDbUtil.addStudent(tempStudent);
+		}
+		response.sendRedirect(request.getContextPath() + "/StudentController");
+//		listStudents(request, response);
 	}
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		List<Student> students = studentDbUtil.getAllStudents();
 		request.setAttribute("students", students);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("list-student.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
