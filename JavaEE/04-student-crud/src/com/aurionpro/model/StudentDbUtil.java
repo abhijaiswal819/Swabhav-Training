@@ -18,11 +18,72 @@ public class StudentDbUtil {
 		super();
 		this.datasource = datasource;
 	}
+	
+	public void addIDStudent() {
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
 
+		try {
+			myConn = datasource.getConnection();
+			System.out.println("AddID");
+			String sql = "ALTER TABLE student ADD id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.execute();
+			
+			System.out.println("Id Added");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(myConn, myStmt, null);
+		}						
+	}
+
+	public void dropIDStudent() {
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+
+		try {
+			myConn = datasource.getConnection();
+			System.out.println("ID Drop");
+			String sql = "ALTER TABLE student DROP id";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.execute();
+			
+			System.out.println("Id Dropped");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(myConn, myStmt, null);
+		}				
+	}
+	
+	public void deleteStudent(int id) {
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+//		System.out.println(id);
+
+		try {
+			myConn = datasource.getConnection();
+			String sql = "delete from student where id=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setInt(1, id);
+			myStmt.execute();
+
+			System.out.println("Deleted");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(myConn, myStmt, null);
+		}		
+	}
+	
 	public void updateStudent(Student tempStudent) {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-		System.out.println(tempStudent);
+//		System.out.println(tempStudent);
 
 		try {
 			myConn = datasource.getConnection();
@@ -36,7 +97,7 @@ public class StudentDbUtil {
 			myStmt.execute();
 
 			System.out.println("Updated");
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -90,7 +151,7 @@ public class StudentDbUtil {
 			myStmt.setString(3, tempStudent.getEmail());
 
 			myStmt.execute();
-			System.out.println("Deleted");
+			System.out.println("Added");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -14,11 +14,18 @@
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Email</th>
+			<th>Update</th>
+			<th>Delete</th>
 		</tr>
 
 		<c:forEach var="student" items="${students}">
 			<c:url var="updateLink" value="StudentController">
 				<c:param name="command" value="LOAD"/>
+				<c:param name="studentId" value="${student.id}" />
+			</c:url>
+			
+			<c:url var="deleteLink" value="StudentController">
+				<c:param name="command" value="DELETE"/>
 				<c:param name="studentId" value="${student.id}" />
 			</c:url>
 			
@@ -28,6 +35,7 @@
 				<td>${student.lastName}</td>
 				<td>${student.email}</td>
 				<td><button onclick="window.location.href='${updateLink}'">Update</button></td>
+				<td><button onclick="window.location.href='${deleteLink}'">Delete</button></td>
 
 			</tr>
 		</c:forEach>

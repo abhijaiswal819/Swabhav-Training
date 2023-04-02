@@ -38,6 +38,7 @@ public class StudentController extends HttpServlet {
 
 //		System.out.println(request.getParameter("command"));
 		String command = request.getParameter("command");
+//		System.out.println(command);
 		if (command == null) {
 			command = "LIST";
 		}
@@ -48,13 +49,16 @@ public class StudentController extends HttpServlet {
 				break;
 			case "ADD":
 				addStudent(request, response);
-				loadStudent(request, response);
+//				loadStudent(request, response);
 				break;
 			case "LOAD":
 				loadStudent(request, response);
 				break;
 			case "UPDATE":
 				updateStudent(request, response);
+				break;
+			case "DELETE":
+				deleteStudent(request, response);
 				break;
 			}
 		
@@ -65,6 +69,15 @@ public class StudentController extends HttpServlet {
 	{
 		e.printStackTrace();
 	}
+	}
+
+	private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int id = Integer.parseInt(request.getParameter("studentId"));
+//		System.out.println(id);
+		studentDbUtil.deleteStudent(id);
+		studentDbUtil.dropIDStudent();
+		studentDbUtil.addIDStudent();
+		response.sendRedirect(request.getContextPath() + "/StudentController");		
 	}
 
 	private void updateStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -96,21 +109,26 @@ public class StudentController extends HttpServlet {
 		List<Student> students = studentDbUtil.getAllStudents();
 		boolean isStudentPresent = false;
 //		
+//		for (Student x : students) {
+//			if (x.getFirstName().equals(tempStudent.getFirstName()) && x.getLastName().equals(tempStudent.getLastName())
+//					&& x.getEmail().equals(tempStudent.getEmail())) {
+//				isStudentPresent = true;
+//			}
+//		}
 		for (Student x : students) {
-			if (x.getFirstName().equals(tempStudent.getFirstName()) && x.getLastName().equals(tempStudent.getLastName())
-					&& x.getEmail().equals(tempStudent.getEmail())) {
+			if (x.getEmail().equals(tempStudent.getEmail())) {
 				isStudentPresent = true;
 			}
 		}
-		for (int i = 0; i < students.size(); i++) {
-			if (students.get(i).getFirstName().equals(tempStudent.getFirstName())) {
-				if (students.get(i).getLastName().equals(tempStudent.getLastName())) {
-					if (students.get(i).getEmail().equals(tempStudent.getEmail())) {
-						isStudentPresent = true;
-					}
-				}
-			}
-		}
+//		for (int i = 0; i < students.size(); i++) {
+//			if (students.get(i).getFirstName().equals(tempStudent.getFirstName())) {
+//				if (students.get(i).getLastName().equals(tempStudent.getLastName())) {
+//					if (students.get(i).getEmail().equals(tempStudent.getEmail())) {
+//						isStudentPresent = true;
+//					}
+//				}
+//			}
+//		}
 
 //		System.out.println(tempStudent);
 		if (!isStudentPresent) {
