@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.aurionpro.model.Passbook;
 import com.aurionpro.model.User;
 import com.aurionpro.model.UserDao;
 
@@ -58,7 +59,12 @@ public class AdminController extends HttpServlet {
 			case "delete":
 				deleteUser(request, response);
 				break;
-
+			case "passbookAdmin":
+				printPassbookAdmin(request, response);
+				break;
+			case "searchadminpassbook":
+				searchAdmin(request, response);
+				break;
 			case "logout":
 				RequestDispatcher dispature = request.getRequestDispatcher("login.jsp");
 				dispature.forward(request, response);
@@ -90,7 +96,7 @@ public class AdminController extends HttpServlet {
 
 		System.out.println(user.isEmpty());
 		if (user.isEmpty()) {
-			String msg1 = "Record not found !!";
+			String msg1 = "User not found !!";
 			request.setAttribute("msg1", msg1);
 		} else {
 			request.setAttribute("listUser", user);
@@ -123,6 +129,49 @@ public class AdminController extends HttpServlet {
 //		System.out.println("acc_no:" + acc_no);
 		userDao.deleteUser(acc_no);
 		listUsers(request, response);
+	}
+
+	private void printPassbookAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+//		System.out.println("i am in admin passbook");
+		List<Passbook> listPass = userDao.PassBook();
+		System.out.println(listPass);
+		request.setAttribute("listPassbook", listPass);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("admin-passbook-details.jsp");
+		dispatcher.forward(request, response);
+
+	}
+
+	private void searchAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int acc_no = Integer.parseInt(request.getParameter("searchadmin"));
+		System.out.println(acc_no);
+//		if(acc_no==0) {
+//			listUsers(request, response);
+//		}
+
+		List<Passbook> passbook = userDao.searchPassbookUser(acc_no);
+		System.out.println(passbook);
+
+//		request.setAttribute("listPassbook", passbook);
+
+//		if(passbook.isEmpty()) {
+//			request.setAttribute("userList", null);
+//		} else {
+//			request.setAttribute("listPassbook", passbook);
+//			System.out.println("Searched students:" +passbook);//Outputs on console
+//		}
+
+		if (passbook.isEmpty()) {
+			String msg2 = "Transaction not found !!";
+			request.setAttribute("msg2", msg2);
+		} else {
+			request.setAttribute("listPassbook", passbook);
+//			System.out.println("Searched students:" + user);
+		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("admin-passbook-details.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

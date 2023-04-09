@@ -11,11 +11,11 @@
 		<link rel="stylesheet" type="text/css" href="add-user-form.css">
 	
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add User</title>
 </head>
 <body>
 <br>
-	<form action="UserController" name="myform" method="post" onsubmit="return validateform()">
+	<form action="AdminController" name="myform" method="post" onsubmit="return validateform()">
 	<div class="container p-3 my-3 border  bg-light text-dark ">
 		<button type="button" name="back" onclick="history.back()" class="btn-dark" ><i class="fa-sharp fa-solid fa-arrow-left"></i></button>
 		<center class=>

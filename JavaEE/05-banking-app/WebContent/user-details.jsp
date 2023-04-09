@@ -33,7 +33,7 @@
 			<input type="hidden" name="command" value="search"> <input
 				type="text" placeholder="Enter Acc_No " name="search" required>
 			<span><input type="submit" value="Search" class="btn-primary-a"></span>
-			<c:out value="${msg2}"></c:out>
+			<c:out value="${msg1}"></c:out>
 		</form>
 
 		<!-- <hr> -->

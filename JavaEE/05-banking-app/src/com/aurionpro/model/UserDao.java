@@ -88,7 +88,7 @@ public class UserDao {
 	public void addUser(User tempUser) {
 		Connection con = null;
 		PreparedStatement stmt = null;
-		
+
 		try {
 			con = dataSource.getConnection();
 			String sql = "insert into user (acc_no,user_name,email,pass,mob,balance) values(?,?,?,?,?,?);";
@@ -105,25 +105,25 @@ public class UserDao {
 			e.printStackTrace();
 		}
 
-//		LocalDate transactionDate = LocalDate.now();
-//		String today = transactionDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//
-//		try {
-//			con = dataSource.getConnection();
-//			String sql = "insert into passbook (acc_no,trans_date, trans_type, amount, balance) values(?,?,?,?,?);";
-//			stmt = con.prepareStatement(sql);
-//			stmt.setInt(1, tempUser.getAcc_no());
-//			stmt.setString(2, today);
-//			stmt.setString(3, "deposit");
-//			stmt.setDouble(4, tempUser.getBalance());
-//			stmt.setDouble(5, tempUser.getBalance());
-//			stmt.execute();
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(con, stmt, null);
-//		}
+		LocalDate transactionDate = LocalDate.now();
+		String today = transactionDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+		try {
+			con = dataSource.getConnection();
+			String sql = "insert into passbook (acc_no, trans_date, trans_type, amount, balance) values(?,?,?,?,?);";
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, tempUser.getAcc_no());
+			stmt.setString(2, today);
+			stmt.setString(3, "deposit");
+			stmt.setDouble(4, tempUser.getBalance());
+			stmt.setDouble(5, tempUser.getBalance());
+			stmt.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(con, stmt, null);
+		}
 	}
 
 	public void deleteUser(int acc_no) {
@@ -140,18 +140,76 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		try {
-//			con = dataSource.getConnection();
-//			String sql = "delete from passbook where acc_no=?;";
-//			stmt = con.prepareStatement(sql);
-//			stmt.setInt(1, acc_no);
-//			stmt.execute();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} 
-		finally {
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = "delete from passbook where acc_no=?;";
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, acc_no);
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			close(con, stmt, null);
 		}
+	}
+
+	public List<Passbook> PassBook() {
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet result = null;
+		List<Passbook> userPassbook = new ArrayList<>();
+
+		try {
+			con = dataSource.getConnection();
+			String sql = "select * from passbook ORDER BY sr_no desc;";
+			stmt = con.createStatement();
+			result = stmt.executeQuery(sql);
+			while (result.next()) {
+				int sr_no = result.getInt("sr_no");
+				int acc_no = result.getInt("acc_no");
+				String trans_date = result.getString("trans_date");
+				String trans_type = result.getString("trans_type");
+				double amount = result.getInt("amount");
+				double balance = result.getInt("balance");
+				userPassbook.add(new Passbook(sr_no, acc_no, trans_date, trans_type, amount, balance));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, stmt, result);
+		}
+		return userPassbook;
+	}
+
+	public List<Passbook> searchPassbookUser(int acc_no) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		List<Passbook> passbook = new ArrayList<>();
+		try {
+			conn = dataSource.getConnection();
+			String sql = "select * from passbook where acc_no like ? order by sr_no desc ;";
+			String query = "%" + acc_no + "%";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, query);
+			result = stmt.executeQuery();
+
+			while (result.next()) {
+				int sr_no = result.getInt("sr_no");
+				int acc_no1 = result.getInt("acc_no");
+				String trans_date = result.getString("trans_date");
+				String trans_type = result.getString("trans_type");
+				double amount = result.getInt("amount");
+				double balance = result.getInt("balance");
+				passbook.add(new Passbook(sr_no, acc_no1, trans_date, trans_type, amount, balance));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt, result);
+		}
+		return passbook;
 	}
 
 	private void close(Connection con, Statement stmt, ResultSet result) {

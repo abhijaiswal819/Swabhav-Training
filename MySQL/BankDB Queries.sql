@@ -45,22 +45,36 @@ delete from admin where id in (101, 102);
  
  desc passbook ;
  
+ insert into passbook ( acc_no , trans_date , trans_type, amount ,balance) values(1001, "2020-06-15", "credit", 1000, 6000);
  insert into passbook ( acc_no , trans_date , trans_type, amount ,balance) values(1002, "2020-06-15", "credit", 1000, 10000);
- 
+
 select * from passbook;
  
-ALTER TABLE passbook
-ADD FOREIGN KEY(acc_no)
-REFERENCES user(acc_no);
+-- ALTER TABLE passbook
+-- ADD FOREIGN KEY(acc_no)
+-- REFERENCES user(acc_no);
+
+-- advertisers_ibfk_1
+--  FOREIGN KEY (acc_no) REFERENCES user(acc_no)
+
+-- ALTER TABLE `user`
+-- ADD FOREIGN KEY(`acc_no`)
+-- REFERENCES `user`(`acc_no`);
 
 
-SELECT name, age, trans_type
+SELECT user_name, trans_type
 FROM user
 INNER JOIN passbook
 ON user.acc_no = passbook.acc_no;
 
 select * from admin;
+desc admin;
+drop table admin;
 
 select * from user;
+desc user;
+drop table user;
 
 select * from passbook;
+desc passbook;
+drop table passbook;

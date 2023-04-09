@@ -25,7 +25,7 @@
    <form action="AdminController">
 	<center>
 		 <button type="submit" class="btn btn-outline-a w-50 p-5 h-50 d-inline-block" name="command" value="userDetail">User Information</button><br><br>
-         <button type="submit" class="btn btn-outline-b w-50 p-5 h-50 d-inline-block" name="command" value="passbookAdmin">Passbook Details</button><br><br>
+         <button type="submit" class="btn btn-outline-b w-50 p-5 h-50 d-inline-block" name="command" value="passbookAdmin">Transaction Details</button><br><br>
          <a href="LogoutController" class="btn btn-outline-danger w-50">Logout</a> 
 	
 	</center>
