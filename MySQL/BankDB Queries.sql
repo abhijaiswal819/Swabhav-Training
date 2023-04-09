@@ -45,8 +45,8 @@ delete from admin where id in (101, 102);
  
  desc passbook ;
  
- insert into passbook ( acc_no , trans_date , trans_type, amount ,balance) values(1001, "2020-06-15", "credit", 1000, 6000);
- insert into passbook ( acc_no , trans_date , trans_type, amount ,balance) values(1002, "2020-06-15", "credit", 1000, 10000);
+ insert into passbook ( acc_no , trans_date , trans_type, amount ,balance) values(1001, "2020-06-15", "Credit", 1000, 6000);
+ insert into passbook ( acc_no , trans_date , trans_type, amount ,balance) values(1002, "2020-06-15", "Credit", 1000, 10000);
 
 select * from passbook;
  
@@ -76,5 +76,6 @@ desc user;
 drop table user;
 
 select * from passbook;
+update passbook set trans_type = "Credit" where acc_no = 1002;
 desc passbook;
 drop table passbook;

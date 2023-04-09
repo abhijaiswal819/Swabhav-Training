@@ -23,7 +23,7 @@
 		</center>
 		<hr>
 		
-		<label for="acno">Account Number : </label> <input type="number" name="acc_no" class="form-control" id="acc_no" required><br>
+		<label for="acc_no">Account Number : </label> <input type="number" name="acc_no" class="form-control" id="acc_no" required><br>
 		<label for="name">Name : </label> <input type="text" name="user_name" class="form-control" id="user_name" required ><br>
 		<label for="email">Email : </label> <input type="text" name="email" class="form-control" id="email" onkeyup="validateEmail()" required><br>
 		<label for="password">Password : </label> <input type="password" name="pass" class="form-control" id="pass" onkeyup="validatePassword()" required><br>		

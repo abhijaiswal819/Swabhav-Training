@@ -18,7 +18,7 @@
    <center>
    		<p><b>ID:</b> ${isAdmin.id} || 
    		<b>NAME:</b> ${isAdmin.admin_name} ||  
-   		<b>EMAIL:</b> ${isAdmin.email} ||  
+   		<b>EMAIL:</b> ${isAdmin.email} || 
    		<b>MOB:</b> ${isAdmin.mob}</p>
    </center>
    <hr><br>

@@ -69,11 +69,13 @@ public class LoginDbUtil {
 
 			result = stmt.executeQuery();
 			if (result.next()) {
+				String user_name = result.getString("user_name");
 				String email = result.getString("email");
 				String pass = result.getString("pass");
 				int acc_no = result.getInt("acc_no");
+				String mob = result.getString("mob");
 				double balance = result.getDouble("balance");
-				isUser = new User(acc_no, email, pass , balance);
+				isUser = new User(acc_no, user_name, email, pass, mob, balance);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

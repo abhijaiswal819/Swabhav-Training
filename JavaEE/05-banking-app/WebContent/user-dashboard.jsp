@@ -18,6 +18,14 @@
 		<center class=>
 			<h1 class="text-Seconday">USER DASHBOARD</h1>
 		</center>
+		<br>
+		<center>
+			<p>
+				<b>Acc No:</b> ${isUser.acc_no} || <b>NAME:</b> ${isUser.user_name} || <b>EMAIL:</b>
+				${isUser.email} || <b>MOB:</b> ${isUser.mob} || <b>Balance:</b> ${balance}
+			</p>
+		</center>
+
 		<hr>
 		<c:set var="acc_no" value="${acc_no}" />
 		<c:url var="printPassbookLink" value="UserController">
@@ -26,7 +34,7 @@
 		</c:url>
 
 		<c:url var="userTransactionLink" value="UserController">
-			<c:param name="command" value="acInfo"></c:param>
+			<c:param name="command" value="accInfo"></c:param>
 			<c:param name="acc_no" value="${isUser.acc_no}"></c:param>
 			<c:param name="balance" value="${balance}"></c:param>
 
@@ -50,7 +58,7 @@
 					<button type="button"
 						class="btn btn-outline-success   w-50 p-5 h-25 d-inline-block ">Edit
 						User Information</button>
-			</a> <br> <br> <a href="LogoutServlet"
+			</a> <br> <br> <a href="LogoutController"
 				class="btn btn-outline-danger w-50"> Logout</a>
 				<hr>
 		</center>
