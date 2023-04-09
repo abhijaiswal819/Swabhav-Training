@@ -10,11 +10,11 @@
 <body>
 	<form action="StudentController" method="get">
 		<input type="hidden" name="command" value="ADD"/>
-		First name <input type="text" name="first_name"/>
+		First name <input type="text" name="first_name" required/>
 		<br><br>
-		Last name <input type="text" name="last_name"/>
+		Last name <input type="text" name="last_name" required/>
 		<br><br>
-		Email <input type="text" name="email"/>
+		Email <input type="text" name="email" required/>
 		<br><br>
 		<button type="submit">Add Student</button>
 	</form>

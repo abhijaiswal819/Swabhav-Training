@@ -19,44 +19,74 @@ public class StudentDbUtil {
 		this.datasource = datasource;
 	}
 	
-	public void addIDStudent() {
+//	public void addIDStudent() {
+//		Connection myConn = null;
+//		PreparedStatement myStmt = null;
+//
+//		try {
+//			myConn = datasource.getConnection();
+//			System.out.println("AddID");
+//			String sql = "ALTER TABLE student ADD id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST";
+//			myStmt = myConn.prepareStatement(sql);
+//			myStmt.execute();
+//			
+//			System.out.println("Id Added");
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(myConn, myStmt, null);
+//		}						
+//	}
+
+//	public void dropIDStudent() {
+//		Connection myConn = null;
+//		PreparedStatement myStmt = null;
+//
+//		try {
+//			myConn = datasource.getConnection();
+//			System.out.println("ID Drop");
+//			String sql = "ALTER TABLE student DROP id";
+//			myStmt = myConn.prepareStatement(sql);
+//			myStmt.execute();
+//			
+//			System.out.println("Id Dropped");
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(myConn, myStmt, null);
+//		}				
+//	}
+	
+	public List<Student> getStudentByName(String name) throws Exception {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-
+		ResultSet myRs = null;
 		try {
 			myConn = datasource.getConnection();
-			System.out.println("AddID");
-			String sql = "ALTER TABLE student ADD id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST";
+			String sql = "select * from student where first_name like ? or last_name like ?";
 			myStmt = myConn.prepareStatement(sql);
-			myStmt.execute();
-			
-			System.out.println("Id Added");
-			
+			myStmt.setString(1, "%"+name+"%");
+			myStmt.setString(2, "%"+name+"%");
+
+			myRs=myStmt.executeQuery();
+
+			List<Student> studentList = new ArrayList<Student>();
+			while (myRs.next()) {
+				int id = myRs.getInt("id");
+				String firstname = myRs.getString("first_name");
+				String lastname = myRs.getString("last_name");
+				String email = myRs.getString("email");
+				studentList.add(new Student(id, firstname, lastname, email));
+			}
+			return studentList;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(myConn, myStmt, null);
-		}						
-	}
-
-	public void dropIDStudent() {
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-
-		try {
-			myConn = datasource.getConnection();
-			System.out.println("ID Drop");
-			String sql = "ALTER TABLE student DROP id";
-			myStmt = myConn.prepareStatement(sql);
-			myStmt.execute();
-			
-			System.out.println("Id Dropped");
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(myConn, myStmt, null);
-		}				
+			close(myConn, myStmt, myRs);
+		}		return null;
 	}
 	
 	public void deleteStudent(int id) {

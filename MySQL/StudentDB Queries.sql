@@ -17,6 +17,7 @@ VALUES ('Abhi', 'Jaiswal', 'abhijaiswal@example.com'),
        ('Sankalp', 'Gaonkar', 'sankalpgaonkar@example.com');
        
 select * from student;
+delete from student where id IN (12, 13);
 select * from student where first_name= "A";
 
 update student set first_name="Abhishek", last_name="Jaiswal",email="abhijaiswal@example.com" where id=1;

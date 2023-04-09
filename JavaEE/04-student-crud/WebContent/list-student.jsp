@@ -8,9 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<form action="StudentController" method="get">
+		<input type="text" name="name"/>
+		<input type="hidden" name="command" value="SEARCH"/>
+		<button type="submit">Search User by Name</button>
+	</form>
+	<br><br>
 	<table border="1">
 		<tr>
-			<th>ID</th>
+			<!-- <th>ID</th> -->
+			<th>Sr. No.</th>
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Email</th>
@@ -18,6 +26,7 @@
 			<th>Delete</th>
 		</tr>
 
+		<c:set var="count" value="0"/>
 		<c:forEach var="student" items="${students}">
 			<c:url var="updateLink" value="StudentController">
 				<c:param name="command" value="LOAD"/>
@@ -30,7 +39,9 @@
 			</c:url>
 			
 			<tr>
-				<td>${student.id}</td>
+				<%-- <td>${student.id}</td> --%>
+				<c:set var="count" value="${count + 1}"/>
+				<td>${count}</td>
 				<td>${student.firstName}</td>
 				<td>${student.lastName}</td>
 				<td>${student.email}</td>
