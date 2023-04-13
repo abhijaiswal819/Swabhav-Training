@@ -1,5 +1,5 @@
 CREATE DATABASE STUDENTDB;
-
+drop table student;
 USE STUDENTDB;
 
 CREATE TABLE STUDENT (
@@ -16,7 +16,8 @@ VALUES ('Abhi', 'Jaiswal', 'abhijaiswal@example.com'),
        ('Akshay', 'Poojary', 'akshaypoojary@example.com'),
        ('Sankalp', 'Gaonkar', 'sankalpgaonkar@example.com');
        
-select * from student;
+use studentdb;
+	select * from student;
 delete from student where id IN (12, 13);
 select * from student where first_name= "A";
 

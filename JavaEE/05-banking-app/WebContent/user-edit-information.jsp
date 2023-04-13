@@ -43,6 +43,10 @@
 			
 			<input type="hidden" name="command" value="update"> 
 			<input type="hidden" name="acc_no" value="${user.acc_no}">
+			<input type="hidden" name="balance" value="${user.balance}">
+			<input type="hidden" name="old_email" value="${user.email}">
+			<input type="hidden" name="old_pass" value="${user.pass}">
+			
 			
 			<center>
 				<button type="submit"
@@ -52,7 +56,7 @@
 
 			<br> <br>
 		</form>
-
+		<p style="font-style: oblique; font-size: 12px; color: rgb(255,0,0);">Note: On change of either Email or Password, you'll be redirected to Login Page. There you need to use your new updated Credentials.</p>
 	</div>
 </body>
 <script src="script.js" ></script>

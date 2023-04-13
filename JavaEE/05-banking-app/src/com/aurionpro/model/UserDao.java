@@ -306,23 +306,50 @@ public class UserDao {
 		return transactions;
 	}
 
-	public void updateUserInformation(User user) {
+	public User updateUserInformation(User user) {
 		Connection con = null;
 		PreparedStatement stmt = null;
+		ResultSet result = null;
+		User isuser = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "update user set email=?,mob=?,pass=? where acc_no=?;";
+			String sql = "update user set user_name=?,email=?,mob=?,pass=? where acc_no=?;";
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, user.getEmail());
-			stmt.setString(2, user.getMob());
-			stmt.setString(3, user.getPass());
-			stmt.setInt(4, user.getAcc_no());
+			stmt.setString(1, user.getUser_name());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getMob());
+			stmt.setString(4, user.getPass());
+			stmt.setInt(5, user.getAcc_no());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} 
+//			finally {
+//			close(con, stmt, null);
+//		}
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT * FROM user WHERE acc_no=?";
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, user.getAcc_no());
+			result = stmt.executeQuery();
+
+			if (result.next()) {
+				String name = result.getString("user_name");
+				String email = result.getString("email");
+				String pass = result.getString("pass");
+				String mob = result.getString("mob");
+				int balance = result.getInt("balance");
+				isuser = new User(user.getAcc_no(), name, email, pass, mob, balance);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
 			close(con, stmt, null);
 		}
+		return isuser;
 	}
 
 	public void depositAmount(Passbook passbook) {

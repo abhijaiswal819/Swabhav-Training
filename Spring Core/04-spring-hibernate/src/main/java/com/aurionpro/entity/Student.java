@@ -20,7 +20,7 @@ public class Student {
 	@Column(name = "last_name")
 	private String lastname;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 
 	public Student() {
@@ -29,6 +29,15 @@ public class Student {
 
 	public Student(String firstname, String lastname, String email) {
 		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+	}
+
+	
+	public Student(int id, String firstname, String lastname, String email) {
+		super();
+		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
@@ -68,7 +77,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + "]";
+		return "\nStudent [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + "]";
 	}
 
 }

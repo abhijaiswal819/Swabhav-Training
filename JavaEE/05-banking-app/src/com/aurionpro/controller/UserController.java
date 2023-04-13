@@ -103,15 +103,15 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException {
 		int acc_no = Integer.parseInt(request.getParameter("acc_no"));
 		double balance = Double.parseDouble(request.getParameter("balance"));
-		System.out.println("Before call: "+balance);
+		System.out.println("Before call: " + balance);
 //		System.out.println(request.getAttribute("balance"));
-		
+
 		request.setAttribute("acc_no", acc_no);
 		request.setAttribute("balance", balance);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-transaction.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	private void filterTransactionByDate(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int acc_no = Integer.parseInt(request.getParameter("acc_no"));
@@ -121,7 +121,7 @@ public class UserController extends HttpServlet {
 		List<Passbook> transactions = userDao.filterTransactionByDate(acc_no, fromDate, toDate);
 		System.out.println(transactions.isEmpty());
 		if (transactions.isEmpty()) {
-			String msg3 = "Record not found !!";
+			String msg3 = "Transaction not found !!";
 			request.setAttribute("msg3", msg3);
 		} else {
 			request.setAttribute("transactions", transactions);
@@ -132,46 +132,63 @@ public class UserController extends HttpServlet {
 		dispatcher.forward(request, response);
 
 	}
-	
+
 	private void updateuserInformation(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int acc_no = Integer.parseInt(request.getParameter("acc_no"));
+		String user_name = request.getParameter("user_name");
 		String email = request.getParameter("email");
 		String mob = request.getParameter("mob");
 		String pass = request.getParameter("pass");
 
-		User user = new User(acc_no, email, mob, pass);
+		double balance = Double.parseDouble(request.getParameter("balance"));
+		System.out.println("Current balance 147: " + balance);
+		request.setAttribute("balance", balance);
+
+		User user = new User(acc_no, user_name, email, pass, mob, balance);
 		System.out.println(user);
-		userDao.updateUserInformation(user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-dashboard.jsp");
-		dispatcher.forward(request, response);
+
+		User isUser = userDao.updateUserInformation(user);
+		System.out.println("After DB Update 152: " + isUser);
+		request.setAttribute("isUser", isUser);
+
+		String old_email = request.getParameter("old_email");
+		System.out.println("Old email 156: " + old_email);
+		String old_pass = request.getParameter("old_pass");
+		System.out.println("Old pass 158: " + old_pass);
+
+		if (!old_email.equals(isUser.getEmail()) || !old_pass.equals(isUser.getPass())) {
+			response.sendRedirect(request.getContextPath() + "/LogoutController");
+		} else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("user-dashboard.jsp");
+			dispatcher.forward(request, response);
+		}	
 
 	}
 
-	
 	private void depositMoney(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		String trans_type = request.getParameter("command");
 		String trans_type = "Credit";
 		int acc_no = Integer.parseInt(request.getParameter("acc_no"));
 		double balance = Double.parseDouble(request.getParameter("balance"));
-		System.out.println("Current Balance : "+balance);
+		System.out.println("Current Balance : " + balance);
 		double amount = Double.parseDouble(request.getParameter("amount"));
-		System.out.println("Amount to be deposited : "+amount);
+		System.out.println("Amount to be deposited : " + amount);
 //		userDao.depositeAmmount(ammount);
 		LocalDate trans_date = LocalDate.now();
 		String today = trans_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 		double updatedBalance = balance + amount;
-		System.out.println("Current Updated Balance : "+updatedBalance);
-		
+		System.out.println("Current Updated Balance : " + updatedBalance);
+
 		Passbook passbook = new Passbook(acc_no, today, trans_type, amount, updatedBalance);
 		userDao.depositAmount(passbook);
 		request.setAttribute("acc_no", acc_no);
 //		request.setAttribute("balance", updatedBalance);
 		request.setAttribute("balance", passbook.getBalance());
 //		System.out.println(request.getAttribute("balance"));
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-dashboard.jsp");
 		dispatcher.forward(request, response);
 
@@ -183,10 +200,10 @@ public class UserController extends HttpServlet {
 		String trans_type = "Debit";
 		int acc_no = Integer.parseInt(request.getParameter("acc_no"));
 		double balance = Double.parseDouble(request.getParameter("balance"));
-		System.out.println("Current Balance : "+balance);
+		System.out.println("Current Balance : " + balance);
 
 		double amount = Double.parseDouble(request.getParameter("amount"));
-		System.out.println("Amount to be withdraw : "+amount);
+		System.out.println("Amount to be withdraw : " + amount);
 
 		LocalDate transactionDate = LocalDate.now();
 		String today = transactionDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -202,7 +219,7 @@ public class UserController extends HttpServlet {
 
 		} else {
 			double updatedBalance = balance - amount;
-			System.out.println("Current Updated Balance : "+updatedBalance);
+			System.out.println("Current Updated Balance : " + updatedBalance);
 
 			Passbook passbook = new Passbook(acc_no, today, trans_type, amount, updatedBalance);
 			userDao.withdrawAmount(passbook);

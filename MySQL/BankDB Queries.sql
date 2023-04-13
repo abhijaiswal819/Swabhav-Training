@@ -72,10 +72,13 @@ desc admin;
 drop table admin;
 
 select * from user;
+update user set pass = "tejas@123" where acc_no = 1002;
 desc user;
 drop table user;
 
 select * from passbook;
 update passbook set trans_type = "Credit" where acc_no = 1002;
+update passbook set balance=11000 where trans_date = "2023-04-09";
+delete from passbook where sr_no = 18; 
 desc passbook;
 drop table passbook;
