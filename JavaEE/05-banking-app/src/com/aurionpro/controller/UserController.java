@@ -141,23 +141,30 @@ public class UserController extends HttpServlet {
 		String mob = request.getParameter("mob");
 		String pass = request.getParameter("pass");
 
-		double balance = Double.parseDouble(request.getParameter("balance"));
-		System.out.println("Current balance 147: " + balance);
-		request.setAttribute("balance", balance);
-
-		User user = new User(acc_no, user_name, email, pass, mob, balance);
-		System.out.println(user);
+//		double balance = Double.parseDouble(request.getParameter("balance"));
+//		System.out.println("Current balance 147: " + balance);
+//		request.setAttribute("balance", balance);
+//
+//		User user = new User(acc_no, user_name, email, pass, mob, balance);
+//		System.out.println(user);
+		
+		User wasUser = userDao.getUserDetail(acc_no);
+		System.out.println("Before update: "+ wasUser);
+		
+		User user = new User(acc_no, user_name, email, pass, mob);
+		System.out.println("Values passed for update: "+user);
 
 		User isUser = userDao.updateUserInformation(user);
-		System.out.println("After DB Update 152: " + isUser);
+		System.out.println("Values after DB Update: " + isUser);
 		request.setAttribute("isUser", isUser);
+		request.setAttribute("balance", isUser.getBalance());
+		
+//		String old_email = request.getParameter("old_email");
+//		System.out.println("Old email 156: " + old_email);
+//		String old_pass = request.getParameter("old_pass");
+//		System.out.println("Old pass 158: " + old_pass);
 
-		String old_email = request.getParameter("old_email");
-		System.out.println("Old email 156: " + old_email);
-		String old_pass = request.getParameter("old_pass");
-		System.out.println("Old pass 158: " + old_pass);
-
-		if (!old_email.equals(isUser.getEmail()) || !old_pass.equals(isUser.getPass())) {
+		if (!wasUser.getEmail().equals(isUser.getEmail()) || !wasUser.getPass().equals(isUser.getPass())) {
 			response.sendRedirect(request.getContextPath() + "/LogoutController");
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user-dashboard.jsp");

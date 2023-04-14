@@ -24,11 +24,13 @@ public class User {
 		this.pass = pass;
 	}
 
-	public User(int acc_no, String email, String mob, String pass) {
+	public User(int acc_no, String user_name, String email, String pass, String mob) {
 		this.acc_no = acc_no;
+		this.user_name = user_name;
 		this.email = email;
-		this.mob = mob;
 		this.pass = pass;
+		this.mob = mob;
+		
 	}
 
 	public User(int acc_no, String email, String pass, double balance) {
@@ -36,7 +38,6 @@ public class User {
 		this.email = email;
 		this.pass = pass;
 		this.balance = balance;
-
 	}
 
 	public int getAcc_no() {

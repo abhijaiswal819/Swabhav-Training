@@ -43,9 +43,10 @@
 			
 			<input type="hidden" name="command" value="update"> 
 			<input type="hidden" name="acc_no" value="${user.acc_no}">
-			<input type="hidden" name="balance" value="${user.balance}">
+			
+			<%-- <input type="hidden" name="balance" value="${user.balance}">
 			<input type="hidden" name="old_email" value="${user.email}">
-			<input type="hidden" name="old_pass" value="${user.pass}">
+			<input type="hidden" name="old_pass" value="${user.pass}"> --%>
 			
 			
 			<center>

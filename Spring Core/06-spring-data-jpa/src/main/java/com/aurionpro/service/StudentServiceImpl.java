@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aurionpro.entity.Student;
+import com.aurionpro.exception.StudentNotFoundException;
 import com.aurionpro.repository.StudentRepository;
 
 @Service
@@ -22,7 +23,21 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findById(int id) {
-		return repository.findById(id).get();
+		List <Student> studentList = repository.findAll();
+		boolean flag = false;
+		for(Student x: studentList) {
+			if(x.getId()==id) {
+				flag=true;
+				break;
+			}
+		}
+		if(flag) {
+			return repository.findById(id).get();
+		}
+		else {
+			throw new StudentNotFoundException("Student with id "+id+" is not found");
+		}
+//		return repository.findById(id).get();
 	}
 
 	@Transactional
