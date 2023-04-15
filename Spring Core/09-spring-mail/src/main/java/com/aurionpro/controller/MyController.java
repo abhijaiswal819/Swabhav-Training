@@ -16,9 +16,9 @@ public class MyController {
 	public String sendmail() {
 
 		emailService.sendMail("ab12345ja@gmail.com", "Test Subject", "Test mail");
-		return "Mail Sent successfully";
+		// return "Mail Sent successfully";
 //		return "emailsent";
-//          return "redirect:/index2";
+		return "redirect:/**";
 //		return "<h1>success: \" + Mail Sent Successfully + \"</h1>";
 	}
 }

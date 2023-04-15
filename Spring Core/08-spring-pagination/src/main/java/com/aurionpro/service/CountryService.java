@@ -1,6 +1,8 @@
 package com.aurionpro.service;
 
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +16,19 @@ import com.aurionpro.repository.CountryRepository;
 @Service
 public class CountryService implements ICountryService {
 
-    @Autowired
-    private CountryRepository repository;
+	@Autowired
+	private CountryRepository repository;
 
-    @Override
-    public List<Country> findPaginated(int pageNo, int pageSize) {
+	@Override
+	public List<Country> findPaginated(int pageNo, int pageSize) {
 
-        PageRequest paging = PageRequest.of(pageNo, pageSize);
-        Page<Country> pagedResult = repository.findAll(paging);
+//        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("name"));
+//        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("population").descending());
 
-        return pagedResult.toList();
-    }
+		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("id").ascending().and(Sort.by("name")));
+
+		Page<Country> pagedResult = repository.findAll(paging);
+
+		return pagedResult.toList();
+	}
 }
