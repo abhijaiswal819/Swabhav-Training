@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> findEmployeesByDesignation(String role) {
 		return repository.findEmployeesByDesignation(role);
 	}
-	
+
 	@Override
 	public List<Employee> findEmployeesByDesignationList(List<String> roles) {
 		return repository.findEmployeesByDesignationList(roles);
@@ -61,5 +61,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return repository.findEmployeesByNameList(names);
 	}
 
-	
+	@Override
+	public List<Employee> getAllEmployees() {
+		return repository.getAllRecords();
+	}
+
 }

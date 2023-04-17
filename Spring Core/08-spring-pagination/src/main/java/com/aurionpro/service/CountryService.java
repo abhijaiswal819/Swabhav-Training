@@ -19,16 +19,35 @@ public class CountryService implements ICountryService {
 	@Autowired
 	private CountryRepository repository;
 
+//	@Override
+//	public List<Country> findPaginated(int pageNo, int pageSize) {
+//
+////       Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("name"));
+////        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("population").descending());
+//
+//		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("id").ascending().and(Sort.by("name")));
+//
+//		Page<Country> pagedResult = repository.findAll(paging);
+//
+//		return pagedResult.toList();
+//	}
+	
 	@Override
-	public List<Country> findPaginated(int pageNo, int pageSize) {
+	public Page<Country> getCountryPagination(int pageNumber, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		
+		return repository.findAll(pageable);	
+	}
 
-//        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("name"));
-//        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("population").descending());
-
-		Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by("id").ascending().and(Sort.by("name")));
-
-		Page<Country> pagedResult = repository.findAll(paging);
-
-		return pagedResult.toList();
+	@Override
+	public Page<Country> getCountryPaginationInSort(int pageNumber, int pageSize, String sortProperty) {
+		Pageable pageable = null;
+		if(null!=sortProperty) {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortProperty);
+		}
+		else {
+		 pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "name");
+		}
+		return repository.findAll(pageable);	
 	}
 }

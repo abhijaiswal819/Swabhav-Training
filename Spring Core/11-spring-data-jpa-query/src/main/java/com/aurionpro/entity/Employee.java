@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name= "employee")
+@NamedQuery(name = "Employee.getAllRecords", query = "FROM Employee")
 public class Employee {
 	
 	@Id

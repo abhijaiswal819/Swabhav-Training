@@ -45,6 +45,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	List<Employee> findEmployeesByNameList(List<String> names);
 
 	// Named queries we need to do in same project
+	List<Employee> getAllRecords();
 
 	// One to One Mapping implement in new project
 	// Both Unidirectional and Bidirectional

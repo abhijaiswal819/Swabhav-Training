@@ -24,6 +24,8 @@ public interface EmployeeService {
 
 	List<Employee> findEmployeesByNameList(List<String> names);
 
+	List<Employee> getAllEmployees();
+
 	
 
 }

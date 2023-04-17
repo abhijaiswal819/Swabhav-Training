@@ -28,3 +28,15 @@ select * from student;
 
 ALTER TABLE student ADD id INT(10) PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST;
 select * from student;
+
+
+
+use employee_db;
+
+use studentdb;
+
+desc employee_db;
+desc address_db;
+
+select * from employee_db;
+select * from address_db;
