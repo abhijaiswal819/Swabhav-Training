@@ -11,36 +11,44 @@ import jakarta.transaction.Transactional;
 
 @Entity
 @Transactional
-@Table(name = "instructordetails_db")
+@Table(name = "instructor_details")
 public class Instructor_details {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "iD_id")
-	private Long iDId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "instructor_details_id")
+	private Long id;
 	private String youtube_channel;
 	private String git_url;
-	
-	@OneToOne(mappedBy = "iDetailsS")  //one to one bidirectional
+
+	@OneToOne(mappedBy = "details") // one to one bidirectional
 	private Instructor instructor;
 
 	public Instructor_details() {
 		super();
 	}
 
-	public Instructor_details(Long iDId, String youtube_channel, String git_url, Instructor instructor) {
+	public Instructor_details(Long id, String youtube_channel, String git_url, Instructor instructor) {
 		super();
-		this.iDId = iDId;
+		this.id = id;
 		this.youtube_channel = youtube_channel;
 		this.git_url = git_url;
 		this.instructor = instructor;
 	}
 
-	public Long getiDId() {
-		return iDId;
+	public Instructor getInstructor() {
+		return instructor;
 	}
 
-	public void setiDId(Long iDId) {
-		this.iDId = iDId;
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getYoutube_channel() {
@@ -59,20 +67,9 @@ public class Instructor_details {
 		this.git_url = git_url;
 	}
 
-	public Instructor getInstructor() {
-		return instructor;
-	}
-
-	public void setInstructor(Instructor instructor) {
-		this.instructor = instructor;
-	}
-
 	@Override
 	public String toString() {
-		return "Instructor_details [iDId=" + iDId + ", youtube_channel=" + youtube_channel + ", git_url=" + git_url
-				+ ", instructor=" + instructor + "]";
+		return "Instructor_details [id=" + id + ", youtube_channel=" + youtube_channel + ", git_url=" + git_url + "]";
 	}
-
-	
 
 }

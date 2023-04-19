@@ -1,59 +1,92 @@
 package com.aurionpro.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.ArrayList;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 
 @Entity
 @Transactional
-@Table(name = "instructor_db")
-
+@Table(name = "instructor")
 public class Instructor {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "i_id")
-	private Long iId;
-	private String iName;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "instructor_id")
+	private Long id;
+	private String name;
 	private String email;
 
-	// One to one mapping
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_add_id") // to have the custom column name
-	private Instructor_details iDetailsS;
-
-	public Instructor(Long iId, String iName, String email, Instructor_details iDetailsS) {
-		super();
-		this.iId = iId;
-		this.iName = iName;
-		this.email = email;
-		this.iDetailsS = iDetailsS;
-	}
+	@JoinColumn(name = "fk_instructor_id")
+	@JsonIgnore
+	private Instructor_details details;
+	
+	
+	@OneToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name = "fk_course_id",referencedColumnName = "instructor_id")
+//	@JsonIgnoreProperties
+	private List<Course> courses;
 
 	public Instructor() {
 		super();
 	}
 
-	public Long getiId() {
-		return iId;
+	public Instructor(Long id, String name, String email, Instructor_details details, List<Course> courses) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.details = details;
+		this.courses = new ArrayList<>();
 	}
 
-	public void setiId(Long iId) {
-		this.iId = iId;
+	public Instructor_details getDetails() {
+		return details;
 	}
 
-	public String getiName() {
-		return iName;
+	public void setDetails(Instructor_details details) {
+		this.details = details;
 	}
 
-	public void setiName(String iName) {
-		this.iName = iName;
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -64,17 +97,9 @@ public class Instructor {
 		this.email = email;
 	}
 
-	public Instructor_details getiDetailsS() {
-		return iDetailsS;
-	}
-
-	public void setiDetailsS(Instructor_details iDetailsS) {
-		this.iDetailsS = iDetailsS;
-	}
-
 	@Override
 	public String toString() {
-		return "Instructor [iId=" + iId + ", iName=" + iName + ", email=" + email + ", iDetailsS=" + iDetailsS + "]";
+		return "Instructor [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 
 }
