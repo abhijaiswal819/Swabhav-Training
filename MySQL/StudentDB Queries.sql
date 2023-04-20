@@ -40,3 +40,10 @@ desc address_db;
 
 select * from employee_db;
 select * from address_db;
+
+select * from student_table;
+drop table student_table;
+select * from course_table;
+drop table course_table;
+select * from student_course;
+drop table student_course;
