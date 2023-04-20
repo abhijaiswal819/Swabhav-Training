@@ -1,5 +1,6 @@
 package com.aurionpro.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -30,19 +31,18 @@ public class Customer {
 	@OneToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
 //	@JsonIgnoreProperties
-	private List<Accounts> accounts;
+	private List<Accounts> accounts = new ArrayList<>();
 
 	public Customer() {
 		super();
 	}
 
-	public Customer(Long customerId, String firstName, String lastName, double totalBalance, List<Accounts> accounts) {
+	public Customer(Long customerId, String firstName, String lastName, double totalBalance) {
 		super();
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.totalBalance = totalBalance;
-		this.accounts = accounts;
 	}
 
 	public Long getCustomerId() {

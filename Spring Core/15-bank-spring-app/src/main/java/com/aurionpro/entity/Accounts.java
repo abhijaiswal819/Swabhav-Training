@@ -1,5 +1,6 @@
 package com.aurionpro.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,7 +27,6 @@ public class Accounts {
 	@Column(name = "account_no")
 	private Long accountNo;
 
-	private String bankName;
 	private double balance;
 
 	@ManyToOne
@@ -42,21 +42,18 @@ public class Accounts {
 	@OneToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "fk_account_no", referencedColumnName = "account_no")
 //	@JsonIgnoreProperties
-	private List<Transaction> transactions;
+	private List<Transaction> transactions = new ArrayList<>();
 
 	public Accounts() {
 		super();
 	}
 
-	public Accounts(Long accountNo, String bankName, double balance, Bank bank, Customer customer,
-			List<Transaction> transactions) {
+	public Accounts(Long accountNo, double balance, Bank bank, Customer customer) {
 		super();
 		this.accountNo = accountNo;
-		this.bankName = bankName;
 		this.balance = balance;
 		this.bank = bank;
 		this.customer = customer;
-		this.transactions = transactions;
 	}
 
 	public Long getAccountNo() {
@@ -65,14 +62,6 @@ public class Accounts {
 
 	public void setAccountNo(Long accountNo) {
 		this.accountNo = accountNo;
-	}
-
-	public String getBankName() {
-		return bankName;
-	}
-
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
 	}
 
 	public double getBalance() {
@@ -109,8 +98,8 @@ public class Accounts {
 
 	@Override
 	public String toString() {
-		return "Accounts [accountNo=" + accountNo + ", bankName=" + bankName + ", balance=" + balance + ", bank=" + bank
-				+ ", customer=" + customer + ", transactions=" + transactions + "]";
+		return "Accounts [accountNo=" + accountNo + ", balance=" + balance + ", bank=" + bank + ", customer=" + customer
+				+ ", transactions=" + transactions + "]";
 	}
 
-	}
+}
