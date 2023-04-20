@@ -28,7 +28,7 @@ public class Customer {
 	private double totalBalance;
 
 	@OneToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "fk_account_no", referencedColumnName = "customer_id")
+	@JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
 //	@JsonIgnoreProperties
 	private List<Accounts> accounts;
 

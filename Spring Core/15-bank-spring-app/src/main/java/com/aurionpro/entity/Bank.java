@@ -27,7 +27,7 @@ public class Bank {
 	private String shortName;
 
 	@OneToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "fk_account_no", referencedColumnName = "bank_id")
+	@JoinColumn(name = "fk_bank_id", referencedColumnName = "bank_id")
 //	@JsonIgnoreProperties
 	private List<Accounts> accounts;
 

@@ -40,7 +40,7 @@ public class Accounts {
 	private Customer customer;
 
 	@OneToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "fk_transaction_no", referencedColumnName = "account_no")
+	@JoinColumn(name = "fk_account_no", referencedColumnName = "account_no")
 //	@JsonIgnoreProperties
 	private List<Transaction> transactions;
 
@@ -113,4 +113,4 @@ public class Accounts {
 				+ ", customer=" + customer + ", transactions=" + transactions + "]";
 	}
 
-}
+	}
