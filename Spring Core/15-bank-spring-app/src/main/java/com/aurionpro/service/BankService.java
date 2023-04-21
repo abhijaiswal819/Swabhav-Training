@@ -14,4 +14,6 @@ public interface BankService {
 
 	List<Bank> getBanks();
 
+	ResponseEntity<String> updateBankDetails(Bank bankData);
+
 }

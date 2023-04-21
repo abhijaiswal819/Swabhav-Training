@@ -31,4 +31,10 @@ public class BankServiceImpl implements BankService {
 		return bankRepository.findAll();
 	}
 
+	@Override
+	public ResponseEntity<String> updateBankDetails(Bank bankData) {
+		bankRepository.save(bankData);
+		return ResponseEntity.ok("Bank data updated");
+	}
+
 }

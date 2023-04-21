@@ -23,8 +23,10 @@ public class Transaction {
 	private Long transactionNo;
 
 	private String transactionType;
+	private String transactionDetail;
 	private String transactionDate;
 	private double amount;
+	private double balance;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_account_no")
@@ -35,13 +37,15 @@ public class Transaction {
 		super();
 	}
 
-	public Transaction(Long transactionNo, String transactionType, String transactionDate, double amount,
-			Accounts accounts) {
+	public Transaction(Long transactionNo, String transactionType, String transactionDetail, String transactionDate,
+			double amount, double balance, Accounts accounts) {
 		super();
 		this.transactionNo = transactionNo;
 		this.transactionType = transactionType;
+		this.transactionDetail = transactionDetail;
 		this.transactionDate = transactionDate;
 		this.amount = amount;
+		this.balance = balance;
 		this.accounts = accounts;
 	}
 
@@ -61,6 +65,14 @@ public class Transaction {
 		this.transactionType = transactionType;
 	}
 
+	public String getTransactionDetail() {
+		return transactionDetail;
+	}
+
+	public void setTransactionDetail(String transactionDetail) {
+		this.transactionDetail = transactionDetail;
+	}
+
 	public String getTransactionDate() {
 		return transactionDate;
 	}
@@ -77,6 +89,14 @@ public class Transaction {
 		this.amount = amount;
 	}
 
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
 	public Accounts getAccounts() {
 		return accounts;
 	}
@@ -88,7 +108,8 @@ public class Transaction {
 	@Override
 	public String toString() {
 		return "Transaction [transactionNo=" + transactionNo + ", transactionType=" + transactionType
-				+ ", transactionDate=" + transactionDate + ", amount=" + amount + ", accounts=" + accounts + "]";
+				+ ", transactionDetail=" + transactionDetail + ", transactionDate=" + transactionDate + ", amount="
+				+ amount + ", balance=" + balance + ", accounts=" + accounts + "]";
 	}
 
 }
