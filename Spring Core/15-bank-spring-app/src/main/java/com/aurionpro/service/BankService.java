@@ -16,4 +16,6 @@ public interface BankService {
 
 	ResponseEntity<String> updateBankDetails(Bank bankData);
 
+	ResponseEntity<String> addAccount(Bank bankData);
+
 }

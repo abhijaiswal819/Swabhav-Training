@@ -17,4 +17,6 @@ public interface CustomerService {
 
 	ResponseEntity<String> updateCustomerDetails(Customer customerData);
 
+	ResponseEntity<String> createAccount(Customer accountData);
+
 }

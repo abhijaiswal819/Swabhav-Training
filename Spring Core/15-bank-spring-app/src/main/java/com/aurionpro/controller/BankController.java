@@ -42,4 +42,9 @@ public class BankController {
 	public ResponseEntity<String> updateBankDetails(@RequestBody Bank bankData){
 		return bankService.updateBankDetails(bankData);
 	}
+	
+	@PostMapping("/addAccount")
+	public ResponseEntity<String> addAccount(@RequestBody Bank bankData){
+		return bankService.addAccount(bankData);
+	}
 }

@@ -23,7 +23,7 @@ import jakarta.transaction.Transactional;
 public class Accounts {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_no")
 	private Long accountNo;
 
