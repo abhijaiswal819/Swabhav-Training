@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,19 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public ResponseEntity<String> saveCustomer(Customer customerData) {
-		Customer dbData = customerRepository.save(customerData);
-		totalBalance(dbData);
-		return ResponseEntity.ok("Customer data saved");
+		List<Accounts> accountList = customerData.getAccounts();
+		boolean flag=false;
+		for(Accounts x: accountList) {
+			if(x.getBalance()<1000) {
+				flag=true;
+			}
+		}
+		if(!flag) {
+			Customer dbData = customerRepository.save(customerData);
+			totalBalance(dbData);
+			return ResponseEntity.ok("Customer data saved");
+		}
+		return new ResponseEntity<>("Balance is less than 1000",HttpStatus.EXPECTATION_FAILED);
 	}
 
 	private void totalBalance(Customer dbData) {
@@ -69,11 +80,21 @@ public class CustomerServiceImpl implements CustomerService{
 	public ResponseEntity<String> createAccount(Customer accountData) {
 		Customer customer = customerRepository.findById(accountData.getCustomerId()).get();
 		List<Accounts> accountList = customer.getAccounts();
-		accountList.addAll(accountData.getAccounts());
-		customer.setAccounts(accountList);
-		Customer dbData = customerRepository.save(customer);
-		totalBalance(dbData);
-		return ResponseEntity.ok("Account created");
+		
+		boolean flag=false;
+		for(Accounts x: accountData.getAccounts()) {
+			if(x.getBalance()<1000) {
+				flag=true;
+			}
+		}
+		if(!flag) {
+			accountList.addAll(accountData.getAccounts());
+			customer.setAccounts(accountList);
+			Customer dbData = customerRepository.save(customer);
+			totalBalance(dbData);
+			return ResponseEntity.ok("Account created");
+		}
+		return new ResponseEntity<>("Balance is less than 1000",HttpStatus.EXPECTATION_FAILED);
 	}
 
 }

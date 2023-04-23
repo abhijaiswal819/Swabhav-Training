@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -38,65 +39,75 @@ public class TransactionServiceImpl implements TransactionService {
 
 				// All About Sender
 				Accounts senderAccount = accountRepository.findById(transactionData.getSender()).get();
-				senderAccount.setBalance(senderAccount.getBalance() - transactionData.getAmount());
-				transactionData.setBalance(senderAccount.getBalance());
-
-				//// Mapping transaction list to sender account
-				List<Transaction> transactionList = senderAccount.getTransactions();
-//										for(Transaction x: transactionList) {
-//											x.setBalance(account.getBalance());
-//											x.setCustomer(customer);
-//											//x=account;
-//										}
-				transactionList.add(transactionData);
-				senderAccount.setTransactions(transactionList);
-				accountRepository.save(senderAccount);
-
-				System.out.println();
-				transactionRepository.save(transactionData);
-
-				// All about Receiver
-				Accounts receiverAccount = accountRepository.findById(transactionData.getReceiver()).get();
-				receiverAccount.setBalance(receiverAccount.getBalance() + transactionData.getAmount());
-				transactionData.setBalance(receiverAccount.getBalance());
-
-				//// Mapping transaction list to receiver account
-				List<Transaction> transactionList1 = receiverAccount.getTransactions();
-//										for(Transaction x: transactionList) {
-//											x.setBalance(account.getBalance());
-//											x.setCustomer(customer);
-//											//x=account;
-//										}
-				transactionList1.add(transactionData);
-				receiverAccount.setTransactions(transactionList1);
 				
-				accountRepository.save(receiverAccount);
-				//transactionData.setTransactionNo();
-				Transaction newTransaction = new Transaction();
-				newTransaction.setAccounts(transactionData.getAccounts());
-				newTransaction.setAmount(transactionData.getAmount());
-				newTransaction.setBalance(transactionData.getBalance());
-				newTransaction.setReceiver(transactionData.getReceiver());
-				newTransaction.setSender(transactionData.getSender());
-				newTransaction.setTransactionDate(transactionData.getTransactionDate());
+				boolean flag = false;
+				if((senderAccount.getBalance()-transactionData.getAmount()<0)){
+					flag = true;
+				}
 				
-				System.out.println();
-				//transactionRepository.save(newTransaction);
+				if(!flag) {
+				
+					senderAccount.setBalance(senderAccount.getBalance() - transactionData.getAmount());
+					transactionData.setBalance(senderAccount.getBalance());
 
-				// senderAccount.setTransactions(transactionData);
+					//// Mapping transaction list to sender account
+					List<Transaction> transactionList = senderAccount.getTransactions();
+//											for(Transaction x: transactionList) {
+//												x.setBalance(account.getBalance());
+//												x.setCustomer(customer);
+//												//x=account;
+//											}
+					transactionList.add(transactionData);
+					senderAccount.setTransactions(transactionList);
+					accountRepository.save(senderAccount);
 
-				Customer senderCustomer = customerRepository.findById(senderAccount.getCustomer().getCustomerId())
-						.get();
-				totalBalance(senderCustomer);
-				Customer receiverCustomer = customerRepository.findById(receiverAccount.getCustomer().getCustomerId())
-						.get();
-				totalBalance(receiverCustomer);
+					System.out.println();
+					transactionRepository.save(transactionData);
 
-				return ResponseEntity.ok("Transaction data saved");
+					// All about Receiver
+					Accounts receiverAccount = accountRepository.findById(transactionData.getReceiver()).get();
+					receiverAccount.setBalance(receiverAccount.getBalance() + transactionData.getAmount());
+					transactionData.setBalance(receiverAccount.getBalance());
+
+					//// Mapping transaction list to receiver account
+					List<Transaction> transactionList1 = receiverAccount.getTransactions();
+//											for(Transaction x: transactionList) {
+//												x.setBalance(account.getBalance());
+//												x.setCustomer(customer);
+//												//x=account;
+//											}
+					transactionList1.add(transactionData);
+					receiverAccount.setTransactions(transactionList1);
+					
+					accountRepository.save(receiverAccount);
+					//transactionData.setTransactionNo();
+					Transaction newTransaction = new Transaction();
+					newTransaction.setAccounts(transactionData.getAccounts());
+					newTransaction.setAmount(transactionData.getAmount());
+					newTransaction.setBalance(transactionData.getBalance());
+					newTransaction.setReceiver(transactionData.getReceiver());
+					newTransaction.setSender(transactionData.getSender());
+					newTransaction.setTransactionDate(transactionData.getTransactionDate());
+					
+					System.out.println();
+					//transactionRepository.save(newTransaction);
+
+					// senderAccount.setTransactions(transactionData);
+
+					Customer senderCustomer = customerRepository.findById(senderAccount.getCustomer().getCustomerId())
+							.get();
+					totalBalance(senderCustomer);
+					Customer receiverCustomer = customerRepository.findById(receiverAccount.getCustomer().getCustomerId())
+							.get();
+					totalBalance(receiverCustomer);
+
+					return ResponseEntity.ok("Transaction data saved");
+				}
+				
 			}
 		}
 
-		return ResponseEntity.ok("Error");
+		return new ResponseEntity<>("Balance is insufficient",HttpStatus.EXPECTATION_FAILED);
 	}
 
 	private void totalBalance(Customer dbData) {
