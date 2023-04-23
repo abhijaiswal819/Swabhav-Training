@@ -1,0 +1,21 @@
+STEPS FOR EXECUTION
+
+CUSTOMER
+Save customer with all details
+Get all customers
+Get customer by id
+Update customer data
+Create new account for customer
+
+Save bank
+Get all banks
+Get bank By id
+Update bank data
+Add account
+
+Save transaction
+Get all transaction
+Get transaction by id
+
+Get accounts
+Get account by id

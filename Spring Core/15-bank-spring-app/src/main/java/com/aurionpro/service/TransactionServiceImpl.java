@@ -81,7 +81,7 @@ public class TransactionServiceImpl implements TransactionService {
 				newTransaction.setTransactionDate(transactionData.getTransactionDate());
 				
 				System.out.println();
-				transactionRepository.save(newTransaction);
+				//transactionRepository.save(newTransaction);
 
 				// senderAccount.setTransactions(transactionData);
 

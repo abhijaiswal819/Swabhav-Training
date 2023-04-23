@@ -18,10 +18,10 @@ public class BankServiceImpl implements BankService {
 
 	@Autowired
 	private BankRepository bankRepository;
-	
+
 	@Autowired
 	private AccountsRepository accountRepository;
-	
+
 	@Autowired
 	private CustomerRepository customerRepository;
 
@@ -43,7 +43,14 @@ public class BankServiceImpl implements BankService {
 
 	@Override
 	public ResponseEntity<String> updateBankDetails(Bank bankData) {
-		bankRepository.save(bankData);
+
+		// customerRepository.save(customerData);
+		Bank bank = bankRepository.findById(bankData.getBankId()).get();
+		bank.setFullName(bankData.getFullName());
+		bank.setShortName(bankData.getShortName());
+		bankRepository.save(bank);
+
+		//bankRepository.save(bankData);
 		return ResponseEntity.ok("Bank data updated");
 	}
 
@@ -52,16 +59,16 @@ public class BankServiceImpl implements BankService {
 		Bank bank = bankRepository.findById(bankData.getBankId()).get();
 		System.out.println(bank);
 		List<Accounts> accountList = bank.getAccounts();
-		//System.out.println(bankData.getAccounts().get(0));
+		// System.out.println(bankData.getAccounts().get(0));
 //		Accounts account = accountRepository.findById(bankData.getBankId()).get();
 		Accounts account = accountRepository.findById(bankData.getAccounts().get(0).getAccountNo()).get();
 //		System.out.println(bankData.getAccounts().get(0).getAccountNo());
 //		System.out.println(account.getAccountNo());
 		Customer customer = customerRepository.findById(account.getCustomer().getCustomerId()).get();
-		for(Accounts x: bankData.getAccounts()) {
+		for (Accounts x : bankData.getAccounts()) {
 			x.setBalance(account.getBalance());
 			x.setCustomer(customer);
-			//x=account;
+			// x=account;
 		}
 		accountList.addAll(bankData.getAccounts());
 		bank.setAccounts(accountList);
