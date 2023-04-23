@@ -96,10 +96,10 @@ public class Accounts {
 		this.transactions = transactions;
 	}
 
-	@Override
-	public String toString() {
-		return "Accounts [accountNo=" + accountNo + ", balance=" + balance + ", bank=" + bank + ", customer=" + customer
-				+ ", transactions=" + transactions + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Accounts [accountNo=" + accountNo + ", balance=" + balance + ", bank=" + bank + ", customer=" + customer
+//				+ ", transactions=" + transactions + "]";
+//	}
 
 }

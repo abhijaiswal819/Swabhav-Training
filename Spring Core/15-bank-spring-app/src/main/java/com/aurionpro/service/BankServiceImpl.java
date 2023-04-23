@@ -11,6 +11,7 @@ import com.aurionpro.entity.Bank;
 import com.aurionpro.entity.Customer;
 import com.aurionpro.repository.AccountsRepository;
 import com.aurionpro.repository.BankRepository;
+import com.aurionpro.repository.CustomerRepository;
 
 @Service
 public class BankServiceImpl implements BankService {
@@ -20,6 +21,9 @@ public class BankServiceImpl implements BankService {
 	
 	@Autowired
 	private AccountsRepository accountRepository;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Override
 	public ResponseEntity<String> saveBank(Bank bankData) {
@@ -46,10 +50,18 @@ public class BankServiceImpl implements BankService {
 	@Override
 	public ResponseEntity<String> addAccount(Bank bankData) {
 		Bank bank = bankRepository.findById(bankData.getBankId()).get();
+		System.out.println(bank);
 		List<Accounts> accountList = bank.getAccounts();
-		Accounts account = accountRepository.findById(bankData.getBankId()).get();
+		//System.out.println(bankData.getAccounts().get(0));
+//		Accounts account = accountRepository.findById(bankData.getBankId()).get();
+		Accounts account = accountRepository.findById(bankData.getAccounts().get(0).getAccountNo()).get();
+//		System.out.println(bankData.getAccounts().get(0).getAccountNo());
+//		System.out.println(account.getAccountNo());
+		Customer customer = customerRepository.findById(account.getCustomer().getCustomerId()).get();
 		for(Accounts x: bankData.getAccounts()) {
 			x.setBalance(account.getBalance());
+			x.setCustomer(customer);
+			//x=account;
 		}
 		accountList.addAll(bankData.getAccounts());
 		bank.setAccounts(accountList);
