@@ -22,8 +22,10 @@ public class Transaction {
 	@Column(name = "transaction_no")
 	private Long transactionNo;
 
-	private String transactionType;
-	private String transactionDetail;
+	private Long sender;
+	private Long receiver;
+	//private String transactionType;
+	//private String transactionDetail;
 	private String transactionDate;
 	private double amount;
 	private double balance;
@@ -37,12 +39,12 @@ public class Transaction {
 		super();
 	}
 
-	public Transaction(Long transactionNo, String transactionType, String transactionDetail, String transactionDate,
-			double amount, double balance, Accounts accounts) {
+	public Transaction(Long transactionNo, Long sender, Long receiver, String transactionDate, double amount,
+			double balance, Accounts accounts) {
 		super();
 		this.transactionNo = transactionNo;
-		this.transactionType = transactionType;
-		this.transactionDetail = transactionDetail;
+		this.sender = sender;
+		this.receiver = receiver;
 		this.transactionDate = transactionDate;
 		this.amount = amount;
 		this.balance = balance;
@@ -57,20 +59,20 @@ public class Transaction {
 		this.transactionNo = transactionNo;
 	}
 
-	public String getTransactionType() {
-		return transactionType;
+	public Long getSender() {
+		return sender;
 	}
 
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
+	public void setSender(Long sender) {
+		this.sender = sender;
 	}
 
-	public String getTransactionDetail() {
-		return transactionDetail;
+	public Long getReceiver() {
+		return receiver;
 	}
 
-	public void setTransactionDetail(String transactionDetail) {
-		this.transactionDetail = transactionDetail;
+	public void setReceiver(Long receiver) {
+		this.receiver = receiver;
 	}
 
 	public String getTransactionDate() {
@@ -105,11 +107,88 @@ public class Transaction {
 		this.accounts = accounts;
 	}
 
-	@Override
-	public String toString() {
-		return "Transaction [transactionNo=" + transactionNo + ", transactionType=" + transactionType
-				+ ", transactionDetail=" + transactionDetail + ", transactionDate=" + transactionDate + ", amount="
-				+ amount + ", balance=" + balance + ", accounts=" + accounts + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Transaction [transactionNo=" + transactionNo + ", sender=" + sender + ", receiver=" + receiver
+//				+ ", transactionDate=" + transactionDate + ", amount=" + amount + ", balance=" + balance + ", accounts="
+//				+ accounts + "]";
+//	}
+	
+	
+
+//	public Transaction(Long transactionNo, String transactionType, String transactionDetail, String transactionDate,
+//			double amount, double balance, Accounts accounts) {
+//		super();
+//		this.transactionNo = transactionNo;
+//		this.transactionType = transactionType;
+//		this.transactionDetail = transactionDetail;
+//		this.transactionDate = transactionDate;
+//		this.amount = amount;
+//		this.balance = balance;
+//		this.accounts = accounts;
+//	}
+//
+//	public Long getTransactionNo() {
+//		return transactionNo;
+//	}
+//
+//	public void setTransactionNo(Long transactionNo) {
+//		this.transactionNo = transactionNo;
+//	}
+//
+//	public String getTransactionType() {
+//		return transactionType;
+//	}
+//
+//	public void setTransactionType(String transactionType) {
+//		this.transactionType = transactionType;
+//	}
+//
+//	public String getTransactionDetail() {
+//		return transactionDetail;
+//	}
+//
+//	public void setTransactionDetail(String transactionDetail) {
+//		this.transactionDetail = transactionDetail;
+//	}
+//
+//	public String getTransactionDate() {
+//		return transactionDate;
+//	}
+//
+//	public void setTransactionDate(String transactionDate) {
+//		this.transactionDate = transactionDate;
+//	}
+//
+//	public double getAmount() {
+//		return amount;
+//	}
+//
+//	public void setAmount(double amount) {
+//		this.amount = amount;
+//	}
+//
+//	public double getBalance() {
+//		return balance;
+//	}
+//
+//	public void setBalance(double balance) {
+//		this.balance = balance;
+//	}
+//
+//	public Accounts getAccounts() {
+//		return accounts;
+//	}
+//
+//	public void setAccounts(Accounts accounts) {
+//		this.accounts = accounts;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "Transaction [transactionNo=" + transactionNo + ", transactionType=" + transactionType
+//				+ ", transactionDetail=" + transactionDetail + ", transactionDate=" + transactionDate + ", amount="
+//				+ amount + ", balance=" + balance + ", accounts=" + accounts + "]";
+//	}
 
 }
