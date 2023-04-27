@@ -44,6 +44,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         Collection<GrantedAuthority> authorities= new ArrayList<GrantedAuthority>();
         String user =  decodedJWT.getSubject();
         List<String> roles = Arrays.asList(decodedJWT.getClaim("roles").toString().replace("\"", "").split("\\s*,\\s*"));
+        System.out.println(roles);
+        if (roles.size() > 1)
         for(String r:roles) {
         	authorities.add(new SimpleGrantedAuthority(r));
         }

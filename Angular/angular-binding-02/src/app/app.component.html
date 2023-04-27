@@ -1,0 +1,104 @@
+<h2> Property binding</h2>
+<img alt="item" height="300" width="200" [src]="itemImageUrl">
+<br>
+
+<button type="button" [disabled]="isUnchanged">Disabled Button</button>
+
+<h2>Two way binding using Property and Event binding</h2>
+<input type="text" [value]="name" (input)="name=$any($event.target).value">
+<p> You entered {{name}}</p>
+<button (click)="clearName()">Clear</button>
+<br><br>
+
+<h2>Two way bindng using ngModel</h2>
+<input type="text" name="test" [(ngModel)]="test">
+<p> You entered {{test}}</p>
+<button (click)="clearText()">Clear</button>
+
+<h2>Two way bindng using id</h2>
+<!-- 
+input- for getting text
+keyup- for getting text on key pressed
+keyup.enter- for getting text on enter key pressed 
+-->
+<input type="text" placeholder="Enter some text" name="input" (keyup.enter)="getValue(box.value)" #box/>
+<br>
+<button (click)="getValue(box.value)">Submit</button>
+<p>You entered {{paraDisplay}}</p>
+
+<h2>Addition of two numbers</h2>
+<input type="text" placeholder="Enter first text" name="input" #box1/>
+<br>
+<input type="text" placeholder="Enter second text" name="input" #box2/>
+<br>
+<button (click)="getNum(box1.value,box2.value)">Submit</button>
+<p>You entered {{totalSum}}</p>
+
+<h2>Addition of two numbers using ngModel</h2>
+<input type="text" placeholder="Enter first text" name="input" [(ngModel)]="test1" />
+<br>
+<input type="text" placeholder="Enter second text" name="input" [(ngModel)]="test2" />
+<br>
+<button (click)="getSum()">Submit</button>
+<p>You entered {{totalSumValue}}</p>
+
+<h2>For Loop</h2>
+<ul>
+  <li *ngFor="let item of items">{{ item}} </li>
+</ul>
+
+<h2>If else</h2>
+<!-- elseBlock is just a name -->
+<div *ngIf="show; else elseBlock">Content to render when condition is true.</div>
+<ng-template #elseBlock>Content to render when condition is false.</ng-template>
+
+<div *ngIf="show; then trueBlock else falseBlock"></div>
+<ng-template #trueBlock>
+  <h1>Content to render when condition is true.</h1>
+</ng-template>
+<ng-template #falseBlock>
+  <h1>Content to render when condition is false.</h1>
+</ng-template>
+
+<h2>If-elseIf ladder</h2>
+<ng-template [ngIf]="color==='blue'">
+  <h1 style="color: blue">Blue</h1>
+</ng-template>
+<ng-template [ngIf]="color==='green'">
+  <h1 style="color: green">Green</h1>
+</ng-template>
+
+<h2>Switch Case</h2>
+<div [ngSwitch]="color">
+  <h1 *ngSwitchCase="'blue'" style="color:blue">Blue using switch</h1>
+  <h1 *ngSwitchCase="'green'" style="color:green">Green using switch</h1>
+  <h1 *ngSwitchDefault style="color:orange">Default color Orange using switch</h1>
+</div>
+
+<h2>Array of Objects</h2>
+<hr>
+<h3>Printing players details(Array of Objects) using for loop</h3>
+<table border="1">
+  <thead>
+    <th>Name</th>
+    <th>Matches</th>
+    <th>Runs</th>
+    <th>Country</th>
+  </thead>
+  <tr *ngFor="let bat of topBatsmanDetails">
+    <td>{{bat.name}}</td>
+    <td>{{bat.matches}}</td>
+    <td>{{bat.runs}}</td>
+    <td>{{bat.country}}</td>
+  </tr>
+</table>
+
+<h2>Nested For</h2>
+<ul *ngFor="let player of scoreDetails">
+  <li>{{player.name}}</li>
+  <li>{{player.matches}}</li>
+  <ul *ngFor="let score of player.lastFiveInnings">
+    <li>{{score}}</li>
+  </ul>
+  <p>-----------------------------------------</p>
+</ul>
