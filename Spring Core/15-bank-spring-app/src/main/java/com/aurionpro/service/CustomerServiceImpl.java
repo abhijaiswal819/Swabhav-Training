@@ -13,7 +13,10 @@ import com.aurionpro.entity.Accounts;
 import com.aurionpro.entity.Customer;
 import com.aurionpro.repository.AccountsRepository;
 import com.aurionpro.repository.CustomerRepository;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
@@ -95,6 +98,24 @@ public class CustomerServiceImpl implements CustomerService{
 			return ResponseEntity.ok("Account created");
 		}
 		return new ResponseEntity<>("Balance is less than 1000",HttpStatus.EXPECTATION_FAILED);
+	}
+	
+	@Override
+	public Page<Customer> getCustomerPagination(int pageNumber, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		return customerRepository.findAll(pageable);
+
+	}
+
+	@Override
+	public Page<Customer> getCustomerPaginationInSort(int pageNumber, int pageSize, String sortProperty) {
+		Pageable pageable = null;
+		if (null != sortProperty) {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortProperty);
+		} else {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "name");
+		}
+		return customerRepository.findAll(pageable);
 	}
 
 }

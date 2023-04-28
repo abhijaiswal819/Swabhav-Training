@@ -3,6 +3,8 @@ STEPS FOR EXECUTION
 CUSTOMER
 Save customer with all details
 Get all customers
+Get all customers with pagination
+Get all customers with pagination and sorting
 Get customer by id
 Update customer data
 Create new account for customer
@@ -10,17 +12,23 @@ Create new account for customer
 BANK
 Save bank
 Get all banks
+Get all banks with pagination
+Get all banks with pagination and sorting
 Get bank By id
 Update bank data
 Add account
 
 TRANSACTION
 Save transaction
-Get all transaction
+Get all transactions
+Get all transactions with pagination
+Get all transactions with pagination and sorting
 Get transaction by id
 
 ACCOUNTS
-Get accounts
+Get all accounts
+Get all accounts with pagination
+Get all accounts with pagination and sorting
 Get account by id
 
 TSM BASIS

@@ -15,7 +15,10 @@ import com.aurionpro.entity.Transaction;
 import com.aurionpro.repository.AccountsRepository;
 import com.aurionpro.repository.CustomerRepository;
 import com.aurionpro.repository.TransactionRepository;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -140,6 +143,23 @@ public class TransactionServiceImpl implements TransactionService {
 	public ResponseEntity<String> updateTransactionDetails(Transaction transactionData) {
 		transactionRepository.save(transactionData);
 		return ResponseEntity.ok("Transaction data updated");
+	}
+	
+	@Override
+	public Page<Transaction> getTransactionPagination(int pageNumber, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		return transactionRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Transaction> getTransactionPaginationInSort(int pageNumber, int pageSize, String sortProperty) {
+		Pageable pageable = null;
+		if (null != sortProperty) {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortProperty);
+		} else {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "name");
+		}
+		return transactionRepository.findAll(pageable);
 	}
 
 }

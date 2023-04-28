@@ -3,6 +3,8 @@ package com.aurionpro.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import com.aurionpro.entity.Customer;
 import com.aurionpro.repository.AccountsRepository;
 import com.aurionpro.repository.BankRepository;
 import com.aurionpro.repository.CustomerRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 @Service
 public class BankServiceImpl implements BankService {
@@ -74,6 +78,23 @@ public class BankServiceImpl implements BankService {
 		bank.setAccounts(accountList);
 		bankRepository.save(bank);
 		return ResponseEntity.ok("Account added");
+	}
+	
+	@Override
+	public Page<Bank> getBankPagination(int pageNumber, int pageSize) {
+		PageRequest pageable = PageRequest.of(pageNumber, pageSize);
+		return bankRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Bank> getBankPaginationInSort(int pageNumber, int pageSize, String sortProperty) {
+		Pageable pageable = null;
+		if (null != sortProperty) {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortProperty);
+		} else {
+			pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "name");
+		}
+		return bankRepository.findAll(pageable);
 	}
 
 }
