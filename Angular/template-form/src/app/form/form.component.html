@@ -1,0 +1,7 @@
+<p>form works! {{data}}</p>
+
+<h2>Child component with @output()</h2>
+
+<label for="item-input">Add an item:</label>
+<input type="text" id="item-input" #newItem>
+<button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>

@@ -68,4 +68,50 @@ export class AppComponent {
     {name:"Surya",matches:90,lastFiveInnings:[20,30,40,50,20]},
     {name:"Pant",matches:120,lastFiveInnings:[20,30,40,50,15]}
   ];
+
+  //Printing player details with total scores
+  calculateTotalScore(scores:number[]):number{
+    let score=scores.reduce( (acc,val)=>{
+      return acc+val;
+    },0)
+  return score;
+  }
+
+  //Style Binding changing styles of element dynamically
+  fontColor:string="green";
+  bgColor:string="blue";
+  toggleColor(){
+    if(this. fontColor ==="blue"){
+      this.fontColor="green";
+      this.bgColor="blue";
+    }
+     else{
+      this.fontColor="blue";
+      this.bgColor="green";
+   }
+  }
+
+  //TODO-App
+  todoList:any[]= [];
+  id:number=0;
+
+  insertValue(todo:string){
+    if(todo!=""){
+      this.todoList.push({"id":this.id, "task":todo})
+      this.id+=1
+    }
+  };
+  
+  deleteTask(taskId:number){    
+    this.todoList.splice(this.todoList.indexOf(taskId),1)
+  }
+
+  //PIPES
+  pipeTitle='Angular Pipes Demo';
+  pipeArray=[10,30,20,40,60,34,70];
+  today:number = Date.now();
+  user={name:"Abhi",age:20,city:"Mumbai"};
+  pipeValue=133.456888;
+
+  //Custom Pipes
 }

@@ -1,0 +1,66 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+      <label for="firstName"><b>Name :</b></label>
+      <input required minlength="3" pattern="^[a-zA-Z\s]*$" ngModel name="firstName" #firstName="ngModel" type="text" class="form-control" id="firstName" class="form-control" placeholder="Enter Name" (change)="log(firstName)">
+    </div>
+  
+    <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid"> 
+      <div *ngIf="firstName.errors?.['required']">First name is required</div>
+      <div *ngIf="firstName.errors?.['minlength']">Minimum length should be {{firstName.errors?.['minlength'].requiredLength}}</div>
+      <div *ngIf="firstName.errors?.['pattern']">Only characters and space allowed</div>
+    </div>
+
+    <br>
+    <div class="form-group">
+      <label for="email"><b>Email :</b></label>
+      <input required minlength="5" pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?" ngModel name="email" #email="ngModel" type="text" class="form-control" id="email" class="form-control" placeholder="Enter email" (change)="log(email)">
+    </div>
+  
+    <div class="alert alert-danger" *ngIf="email.touched && email.invalid"> 
+      <div *ngIf="email.errors?.['required']">email is required</div>
+      <div *ngIf="email.errors?.['minlength']">Minimum length should be 5</div>
+      <div *ngIf="email.errors?.['pattern']">Not following the typical email pattern</div>
+    </div>
+
+    <div class="form-group"><br>
+      <label for="userType"><b>Role :</b></label>
+      <select name="userType" [(ngModel)]="userType" class="form-select" aria-label="Default select example" multiple>
+        <!-- multiple to select multiple options -->
+        <option value="1">Guest</option>
+        <option value="2">Admin</option>
+      </select>
+    </div>
+  
+    <div class="form-group"><br>
+      <label><b>Gender :</b></label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="userGender" [(ngModel)]="userGender" value="male">
+        <label class="form-check-label" for="userGender">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="userGender" [(ngModel)]="userGender" value="female">
+        <label class="form-check-label" for="userGender">
+          Female
+        </label>
+      </div>
+    </div>
+  
+    <!-- div.checkbox>label[for="textnew"]+input[id='textnew'] -->
+    <div class="form-check form-switch"><br>
+      <input checked ngModel name="isactive" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
+      <label class="form-check-label" for="flexSwitchCheckDefault">
+        Check to Accept <b><i>Terms And Conditions</i></b>
+      </label>
+    </div>
+
+    <br>
+    <div>
+      {{ f.value | json }}
+    </div>
+    <br>
+
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+    <button class="btn btn-success" (click)=resetUserForm(f)>Reset</button>
+  </form>

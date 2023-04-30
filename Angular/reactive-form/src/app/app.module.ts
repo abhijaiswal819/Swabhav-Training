@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { KmToMeterPipe } from './pipes/km-to-meter.pipe';
-import { UsdToInrPipe } from './pipes/usd-to-inr.pipe';
+import { UserFormComponent } from './user-form/user-form.component';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    KmToMeterPipe,
-    UsdToInrPipe
+    UserFormComponent
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
