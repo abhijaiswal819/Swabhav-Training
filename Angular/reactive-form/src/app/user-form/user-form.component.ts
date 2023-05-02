@@ -22,7 +22,13 @@ export class UserFormComponent implements OnInit {
     Validators.maxLength(10), Validators.minLength(3), Validators.pattern("^[a-zA-Z]*$")]),
 
     email:new FormControl('',[Validators.required,
-      Validators.maxLength(30), Validators.minLength(3), Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
+      Validators.maxLength(30), Validators.minLength(3), Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+
+      userType:new FormControl(''),
+
+      userGender:new FormControl(''),
+
+      isactive:new FormControl('')
   });
 
   addUser(){

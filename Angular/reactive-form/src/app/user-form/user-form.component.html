@@ -1,6 +1,7 @@
 <p>user-form works!</p>
 
 <form [formGroup]="addUserForm">
+    <label for="userName"><b>Username :</b></label>
     <input type="text" formControlName="userName" class="form-control">
     <div class="alert alert-danger" *ngIf="addUserForm.get('userName')?.touched && !addUserForm.get('userName')?.valid">
         <div *ngIf="addUserForm.get('userName')?.hasError('required')">
@@ -17,6 +18,8 @@
         </div>
     </div>
 
+    <br>
+    <label for="email"><b>Email :</b></label>
     <input type="text" formControlName="email" class="form-control">
     <div class="alert alert-danger" *ngIf="addUserForm.get('email')?.touched && !addUserForm.get('email')?.valid">
         <div *ngIf="addUserForm.get('email')?.hasError('required')">
@@ -33,6 +36,36 @@
         </div>
     </div>
 
+    <br>
+    <label for="userType"><b>Role :</b></label>
+    <select formControlName="userType" class="form-select" aria-label="Default select example" multiple>
+        <!-- multiple to select multiple options -->
+        <option value="1">Guest</option>
+        <option value="2">Admin</option>
+    </select>
+
+    <br>
+    <label><b>Gender :</b></label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" formControlName="userGender" value="male">
+        <label class="form-check-label" for="userGender">
+          Male
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" formControlName="userGender" value="female">
+        <label class="form-check-label" for="userGender">
+          Female
+        </label>
+    </div>
+
+    <br>
+    <input formControlName="isactive" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
+      <label class="form-check-label" for="flexSwitchCheckDefault">
+        &nbsp; Check to Accept <b><i>Terms And Conditions</i></b>
+    </label>
+
+    <br><br>
     <button (click)="addUser()" class="btn btn-primary" [disabled]="!addUserForm.valid">Submit</button>
     <button (click)="resetUserForm()" class="btn btn-success">Reset</button>
 
