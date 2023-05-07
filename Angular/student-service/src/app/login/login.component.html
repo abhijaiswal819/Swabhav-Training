@@ -1,0 +1,32 @@
+<h2 style="text-align: center;">Login Page</h2>
+<hr>
+<br>
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+      <label for="userName"><b>Username :</b></label>
+      <input required minlength="3" pattern="^[a-zA-Z\s]*$" ngModel name="userName" #userName="ngModel" type="text" class="form-control" id="userName" class="form-control" placeholder="Enter Username">
+    </div>
+  
+    <!-- <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid"> 
+      <div *ngIf="firstName.errors?.['required']">First name is required</div>
+      <div *ngIf="firstName.errors?.['minlength']">Minimum length should be {{firstName.errors?.['minlength'].requiredLength}}</div>
+      <div *ngIf="firstName.errors?.['pattern']">Only characters and space allowed</div>
+    </div> -->
+
+    <br>
+    <div class="form-group">
+        <label for="password"><b>Password :</b></label>
+        <input required minlength="3" pattern="^[a-zA-Z\s]*$" ngModel name="password" #password="ngModel" type="password" class="form-control" id="password" class="form-control" placeholder="Enter Password" >
+      </div>
+    
+      <!-- <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid"> 
+        <div *ngIf="firstName.errors?.['required']">First name is required</div>
+        <div *ngIf="firstName.errors?.['minlength']">Minimum length should be {{firstName.errors?.['minlength'].requiredLength}}</div>
+        <div *ngIf="firstName.errors?.['pattern']">Only characters and space allowed</div>
+      </div> -->
+
+    <br>
+
+    <button class="btn btn-primary" [disabled]="!f.valid">Login</button>
+    <!-- <button class="btn btn-success" (click)=resetUserForm(f)>Reset</button> -->
+  </form>

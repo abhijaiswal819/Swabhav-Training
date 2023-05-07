@@ -1,0 +1,40 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div class="form-group">
+      <label for="firstName"><b>First Name :</b></label>
+      <input required minlength="3" pattern="^[a-zA-Z\s]*$" name="firstName" [(ngModel)]="student.firstName" type="text" class="form-control" id="firstName" class="form-control" placeholder="Enter Name">
+    </div>
+  
+    <!-- <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid"> 
+      <div *ngIf="firstName.errors?.['required']">First name is required</div>
+      <div *ngIf="firstName.errors?.['minlength']">Minimum length should be {{firstName.errors?.['minlength'].requiredLength}}</div>
+      <div *ngIf="firstName.errors?.['pattern']">Only characters and space allowed</div>
+    </div> -->
+
+    <br>
+    <div class="form-group">
+        <label for="lastName"><b>Last Name :</b></label>
+        <input required minlength="3" pattern="^[a-zA-Z\s]*$" name="lastName" [(ngModel)]="student.lastName" type="text" class="form-control" id="lastName" class="form-control" placeholder="Enter Name" >
+      </div>
+    
+      <!-- <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid"> 
+        <div *ngIf="firstName.errors?.['required']">First name is required</div>
+        <div *ngIf="firstName.errors?.['minlength']">Minimum length should be {{firstName.errors?.['minlength'].requiredLength}}</div>
+        <div *ngIf="firstName.errors?.['pattern']">Only characters and space allowed</div>
+      </div> -->
+
+    <br>
+    <div class="form-group">
+      <label for="email"><b>Email :</b></label>
+      <input required minlength="5" pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?" name="email" [(ngModel)]="student.email" type="text" class="form-control" id="email" class="form-control" placeholder="Enter email" >
+    </div>
+  
+    <!-- <div class="alert alert-danger" *ngIf="email.touched && email.invalid"> 
+      <div *ngIf="email.errors?.['required']">email is required</div>
+      <div *ngIf="email.errors?.['minlength']">Minimum length should be 5</div>
+      <div *ngIf="email.errors?.['pattern']">Not following the typical email pattern</div>
+    </div> -->
+    <br>
+
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+    <!-- <button class="btn btn-success" (click)=resetUserForm(f)>Reset</button> -->
+  </form>

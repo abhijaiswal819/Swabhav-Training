@@ -1,8 +1,13 @@
 package com.aurionpro.service;
 
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,6 +62,26 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> saveAll(List<Student> studentList) {
 		return repository.saveAll(studentList);
 	}
+
+	@Override
+	  public Page<Student> getStudentPagination(int pageNumber, int pageSize) {
+	    Pageable pageable = PageRequest.of(pageNumber, pageSize);
+	    
+	    return repository.findAll(pageable);  
+	  }
+
+	  @Override
+	  public Page<Student> getStudentPaginationInSort(int pageNumber, int pageSize, String sortProperty) {
+	    Pageable pageable = null;
+	    if(null!=sortProperty) {
+	      pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, sortProperty);
+	    }
+	    else {
+	     pageable = PageRequest.of(pageNumber, pageSize, Sort.Direction.ASC, "name");
+	    }
+	    return repository.findAll(pageable);  
+	  }
+
 
 //	@Override
 //	@Transactional
