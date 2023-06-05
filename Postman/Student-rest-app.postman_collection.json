@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "f1c2d8fb-7443-4fab-8df5-6568d2dde84c",
+		"name": "Student-rest-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Student By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/students/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"students",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Abc\",\r\n    \"lastName\": \"Pqr\",\r\n    \"email\": \"abcpqr@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 24,\r\n        \"firstName\": \"Lmn\",\r\n        \"lastName\": \"Opq\",\r\n        \"email\": \"abcpqr@example.com\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/students/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"students",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Student By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/students/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"students",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Students",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/studentapp/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"studentapp",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Multiple Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"firstName\": \"Abh\",\r\n    \"lastName\": \"Jai\",\r\n    \"email\": \"abh@example.com\"\r\n    },\r\n{\r\n    \"firstName\": \"Abhishek\",\r\n    \"lastName\": \"Jaiswal\",\r\n    \"email\": \"abhishek@example.com\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/studentapp/students/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"studentapp",
+						"students",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

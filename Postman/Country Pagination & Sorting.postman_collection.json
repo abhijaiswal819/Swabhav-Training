@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "2de6e4bb-4005-4bda-83af-8561533aced9",
+		"name": "Country Pagination & Sorting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countryapp/countries/1/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countryapp",
+						"countries",
+						"1",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination & Sorting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countryapp/countries/5/5/population",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countryapp",
+						"countries",
+						"5",
+						"5",
+						"population"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "3957c367-35d0-4163-9749-8ecfa2e55b98",
+		"name": "Mail through Spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mail sent",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/mail/send-mail?id=ab12345ja@gmail.com&subject=Testing Mail API&body=Hurray ! Mail have been sent...",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mail",
+						"send-mail"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ab12345ja@gmail.com"
+						},
+						{
+							"key": "subject",
+							"value": "Testing Mail API"
+						},
+						{
+							"key": "body",
+							"value": "Hurray ! Mail have been sent..."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mail sent attachment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/mail/send-mail-attachment?id=ab12345ja@gmail.com&subject=Testing Mail API with Attachment&body=Please find the attached document below.&filename=git-essentials.pdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mail",
+						"send-mail-attachment"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "ab12345ja@gmail.com"
+						},
+						{
+							"key": "subject",
+							"value": "Testing Mail API with Attachment"
+						},
+						{
+							"key": "body",
+							"value": "Please find the attached document below."
+						},
+						{
+							"key": "filename",
+							"value": "git-essentials.pdf"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

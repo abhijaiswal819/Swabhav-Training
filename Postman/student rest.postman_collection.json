@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "fa3ed57d-c265-436a-9890-af5bbc266154",
+		"name": "student rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
+					"protocol": "http",
+					"host": [
+						"gsmktg",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"techlabs",
+						"test",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get student by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/0e7925c2-cc7a-46a3-8f46-b0df806de619",
+					"protocol": "http",
+					"host": [
+						"gsmktg",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"techlabs",
+						"test",
+						"students",
+						"0e7925c2-cc7a-46a3-8f46-b0df806de619"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add new student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"rollNo\": 901,\r\n        \"name\": \"Neha\",\r\n        \"age\": 32,\r\n        \"email\": \"neha@gmail.com\",\r\n        \"date\": \"2023-03-16\",\r\n        \"isMale\": false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
+					"protocol": "http",
+					"host": [
+						"gsmktg",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"techlabs",
+						"test",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n        \"id\": \"6e9f20a9-e3f2-4c95-a0d5-e6243489167c\",\r\n        \"rollNo\": 1901,\r\n        \"name\": \"Neha\",\r\n        \"age\": 32,\r\n        \"email\": \"neharao@gmail.com\",\r\n        \"date\": \"2023-03-16\",\r\n        \"isMale\": false\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/6e9f20a9-e3f2-4c95-a0d5-e6243489167c",
+					"protocol": "http",
+					"host": [
+						"gsmktg",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"techlabs",
+						"test",
+						"students",
+						"6e9f20a9-e3f2-4c95-a0d5-e6243489167c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete student",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/6e9f20a9-e3f2-4c95-a0d5-e6243489167c",
+					"protocol": "http",
+					"host": [
+						"gsmktg",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"v1",
+						"techlabs",
+						"test",
+						"students",
+						"6e9f20a9-e3f2-4c95-a0d5-e6243489167c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "fcd939ae-2a59-4a99-b15d-33c42457259f",
+		"name": "Employee-rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Find all employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add  multiple employees",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n       \"name\": \"Ritesh\",\r\n    \"age\" : 24,\r\n    \"designation\" :\"Developer\",\r\n    \"active\" :true\r\n    },\r\n    {\r\n       \"name\": \"Umdesh\",\r\n    \"age\" : 29,\r\n    \"designation\" :\"Manager\",\r\n    \"active\" :true\r\n    },\r\n    {\r\n       \"name\": \"Ravi\",\r\n    \"age\" : 32,\r\n    \"designation\" :\"Developer\",\r\n    \"active\" :false\r\n    },\r\n    {\r\n       \"name\": \"Dhanesh\",\r\n    \"age\" : 34,\r\n    \"designation\" :\"CEO\",\r\n    \"active\" :true\r\n    },\r\n    {\r\n       \"name\": \"Nitesh\",\r\n    \"age\" : 33,\r\n    \"designation\" :\"Manager\",\r\n    \"active\" :false\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/empapp/employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find employees by active state",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/active/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"active",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get employee by role list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/designationList?roles=Developer,Manager",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"designationList"
+					],
+					"query": [
+						{
+							"key": "roles",
+							"value": "Developer,Manager"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get employee by name list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/nameList?names=Ravi,Ritesh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"nameList"
+					],
+					"query": [
+						{
+							"key": "names",
+							"value": "Ravi,Ritesh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get employees by role",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/designation?role=Developer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"designation"
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "Developer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get employees by role list and active state",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/designationListAndActiveState?roles=Developer,Manager&activeState=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"designationListAndActiveState"
+					],
+					"query": [
+						{
+							"key": "roles",
+							"value": "Developer,Manager"
+						},
+						{
+							"key": "activeState",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get employees sal greater than",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/salary/60000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"salary",
+						"60000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get top employees salary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employees/topsalary/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employees",
+						"topsalary",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/empapp/employis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"empapp",
+						"employis"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

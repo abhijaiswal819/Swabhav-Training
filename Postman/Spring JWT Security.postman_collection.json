@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "ab179627-9fc9-4a63-bf08-d3b873e5c2ef",
+		"name": "Spring JWT Security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a new User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Sankalp\",\r\n    \"password\":\"pass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBYmhpc2hlayIsInJvbGVzIjoiIiwiZXhwIjoxNjgyNjY4NTAzfQ.i65ljNmD2RuE8JkwdJ481pmruh1-jyuFMHPWsbMUzVu_Aj8ajH98dOQFjccisIhc1CTbSU1v-6MN6fEsrQrcrQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ROLE_MANAGER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/roles/addrole",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"roles",
+						"addrole"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Abhishek\",\r\n    \"password\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add role to user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBYmhpc2hlayIsInJvbGVzIjoiIiwiZXhwIjoxNjgyNjY4NjQzfQ.fQDhIrdUVse6Th3p-WwSx_BSoOScwoco6tz3GMk-wvFHl3PgqmUeDzhns2LKiF3Wu4GrKj3WSQeBwSqFMm7Y9Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/userid/1/role/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"userid",
+						"1",
+						"role",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBYmhpc2hlayIsInJvbGVzIjoiIiwiZXhwIjoxNjgyNjY4NjQzfQ.fQDhIrdUVse6Th3p-WwSx_BSoOScwoco6tz3GMk-wvFHl3PgqmUeDzhns2LKiF3Wu4GrKj3WSQeBwSqFMm7Y9Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add multiple students",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBYmhpc2hlayIsInJvbGVzIjoiUk9MRV9ERVZFTE9QRVIiLCJleHAiOjE2ODI2Njg4NTB9.1vkwZX47pvSM_X5papxvdmcrZadAcNxGD_6JxsEKhZGk8eTTPCYrEXCS8whb02MbTtor90I03dBd74iNU29A5w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"firstName\": \"Tejas\",\r\n    \"lastName\": \"Tiwari\",\r\n    \"email\": \"tiw@gmail.com\"\r\n},\r\n{\r\n    \"firstName\": \"ShahRukh\",\r\n    \"lastName\": \"Khan\",\r\n    \"email\": \"shah@gmail.com\"\r\n},\r\n{\r\n    \"firstName\": \"Pooja\",\r\n    \"lastName\": \"Kadam\",\r\n    \"email\": \"pooj@gmail.com\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/studentapp/students/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"studentapp",
+						"students",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get student by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBYmhpc2hlayIsInJvbGVzIjoiUk9MRV9ERVZFTE9QRVIiLCJleHAiOjE2ODI2Njg4NTB9.1vkwZX47pvSM_X5papxvdmcrZadAcNxGD_6JxsEKhZGk8eTTPCYrEXCS8whb02MbTtor90I03dBd74iNU29A5w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/studentapp/students/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"studentapp",
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
